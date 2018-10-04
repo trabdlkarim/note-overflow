@@ -1,2 +1,3 @@
-# note-overflow
-Lecture Notes Sharing System
+# Note Overflow
+# CE Final Year Year Project I
+Lecture Notes Sharing System (Not Paylaşım Sistemi)
