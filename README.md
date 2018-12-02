@@ -1,3 +1,3 @@
-# Note Overflow
+# Note Overflow : Lecture Notes Sharing and Searching System (Not Paylaşım Sistemi)
 # COMU/CE Final Year Year Project 
-Lecture Notes Sharing System (Not Paylaşım Sistemi)
+A system for lecture notes searching and sharing between students, which is dedicated to students for effectively supporting their web-based learning and exam preparation activities.
