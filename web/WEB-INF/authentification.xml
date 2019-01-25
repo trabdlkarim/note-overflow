@@ -1,0 +1,75 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+ 
+    <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" />
+    
+    <security:http pattern="/login*" security="none"/>
+    <security:http pattern="/signup*" security="none"/>
+    <security:http pattern="/home*" security="none"/>
+    <security:http pattern="/index*" security="none"/>
+    <security:http pattern="/welcome*" security="none"/>
+    <security:http pattern="/reset-password*" security="none"/>
+    <security:http pattern="/error*" security="none"/>        
+    
+    <security:http auto-config="true" use-expressions="true">
+        <security:intercept-url pattern="/*" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/pages/**" access="permitAll"/>
+        <security:intercept-url pattern="/do/**" access="permitAll"/>        
+        <security:intercept-url pattern="/u/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        
+        <security:form-login 
+            login-page="/login.htm" 
+            default-target-url="/u/feed.htm"
+            login-processing-url="/do/loginSecurityCheck.htm" 
+            authentication-failure-url="/login.htm?error=true"
+            username-parameter="username"
+            password-parameter="password"
+            always-use-default-target="true"/>
+        
+        <security:logout logout-success-url="/login.htm?logout=true" logout-url="/logout.htm" invalidate-session="true"/>
+        
+        <security:csrf disabled="true"/>
+        
+        <security:custom-filter before="FORM_LOGIN_FILTER" ref="authenticationFilter"/>
+        
+        <security:session-management invalid-session-url="/login.htm?timeout=true">
+            <security:concurrency-control max-sessions="1" expired-url="/login.htm?timeout=true"/>
+        </security:session-management>
+    
+    </security:http>
+
+    <import resource="applicationContext.xml"/> 
+    
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider >
+            <!--security:jdbc-user-service data-source-ref="dataSource"
+            users-by-username-query="SELECT email, parola FROM uyeler WHERE email = ?"
+            authorities-by-username-query="SELECT user.email, role.authority FROM uyeler user, rollar role WHERE user.uye_rolu = role.rol_id AND user.email = ?"/-->
+            <security:user-service>
+                <security:user name="contact@trabdlkarim.com" password="12345678" authorities="ROLE_ADMIN" />
+                <security:user name="trabdlkarim@gmail.com" password="Aminatiamo" authorities="ROLE_USER" />
+            </security:user-service>
+        </security:authentication-provider>        
+    </security:authentication-manager>
+    
+    <bean id="authenticationSuccessHandler"
+     class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+     <property name="defaultTargetUrl" value="/u/feed.htm" />
+    </bean>
+   
+    <bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+    <property name="authenticationManager" ref="authenticationManager" />
+    <property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
+   </bean> 
+
+   <bean id="authenticationEntryPoint" class= "org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    <constructor-arg value="/do/loginSecurityCheck.htm"/>
+   </bean> 
+
+</beans>

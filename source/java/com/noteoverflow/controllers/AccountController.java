@@ -1,28 +1,51 @@
 package com.noteoverflow.controllers;
 
 
+import com.noteoverflow.models.LoginFormParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import com.noteoverflow.models.RegisterFormParser;
 
 @Controller
 public class AccountController {
-	@RequestMapping(value="login",method=RequestMethod.GET)
-	public String renderLoginView(ModelMap model) {
-	      return "account/login";
+	
+        @RequestMapping(value="/u/feed")
+	public String renderUserDashboardView(ModelMap model) {
+	    model.addAttribute("pageName","Kullanıcı paneli");  
+            return "account/feed";
 	   }
-        @RequestMapping(value="dashboard",method=RequestMethod.GET)
-	public String renderDashboardView(ModelMap model) {
-	      return "account/dashboard";
+       
+        
+        @RequestMapping(value="/admin/dashboard")
+	public String renderAdminDashboadView(ModelMap model) {
+              model.addAttribute("pageName","Yönetici paneli");
+	      return "admin/dasboard";
 	   }
-        @RequestMapping(value="register",method=RequestMethod.GET)
-	public String renderRegisterView(ModelMap model) {
-	      return "register";
-	   }
-        @RequestMapping(value="notifications",method=RequestMethod.GET)
+       
+        
+        @RequestMapping(value="/u/notifications",method=RequestMethod.POST)
 	public String renderNotificationView(ModelMap model) {
+              model.addAttribute("pageName","Bildirimler");             
 	      return "account/notifications";
 	   }
+        
+        @RequestMapping(value="/logout.htm")
+	public String renderLogoutView(ModelMap model) {
+              model.addAttribute("pageName","Çıkış");             
+	      return "account/logout";
+	   }
+        
+        @RequestMapping(value="/success",method=RequestMethod.POST)
+	public String renderWelcomeView(
+                ModelMap model,
+                @ModelAttribute("loginFormParser") LoginFormParser loginParser){
+            
+            model.addAttribute("pageName","Welcome page");             	     
+            return "actions/success";
+	   }
 
+   
 }
