@@ -1,17 +1,25 @@
-<%-- 
-    Document   : settings
-    Created on : Dec 1, 2018, 5:37:32 AM
-    Author     : trabdlkarim
---%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@taglib tagdir="/WEB-INF/tags/layouts" prefix="layout" %>
+
+<c:set var="bodyContent">
+    <p>Settings</p>
+</c:set>
+ 
+ <layout:caspero>
+     <jsp:attribute name="topbar">
+       <%@include file="/include/nav_topbar.jsp" %>    
+     </jsp:attribute>
+     
+     <jsp:attribute name="sidebar">
+        <%@include file="/include/nav_sidebar.jsp" %>  
+     </jsp:attribute>
+     
+     <jsp:body>
+         ${bodyContent}
+     </jsp:body>           
+ </layout:caspero>
+   
+
+

@@ -4,18 +4,41 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context = "http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
        http://www.springframework.org/schema/aop 
        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
        http://www.springframework.org/schema/tx 
-       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
     
+    <!-- Support annotation -->
+    <context:annotation-config />
     
-    <import resource="applicationContext.xml"/>
-   
-    <bean id="userJDBCTemplate" class="com.noteoverflow.models.UserJDBCTemplate">  
-     <property name="dataSource" ref="dataSource"/>  
-    </bean> 
+    <!-- support annotation transaction -->
+    <tx:annotation-driven transaction-manager="txManager" />
 
+    <!--import resource="applicationContext.xml"/-->
+    
+   <!-- spring jdbc template -->
+   <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+      <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- spring data source transaction manager  -->
+    <bean id="txManager"
+	  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	     <property name="dataSource" ref="dataSource" />
+    </bean>
+   
+   <!-- Data Access Object -->
+   <bean id="userDetailsDAOImpl" 
+         class="com.noteoverflow.dao.impl.UserDetailsDAOImpl" />
+   
+   <!-- User Details Service -->
+    <bean id="userDetailsServiceImpl" 
+          class="com.noteoverflow.service.impl.UserDetailsServiceImpl" />
+    
 </beans>
