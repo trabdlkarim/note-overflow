@@ -5,13 +5,18 @@
  */
 package com.noteoverflow.controllers;
 
-import com.noteoverflow.models.ForgotPasswordFormParser;
-import com.noteoverflow.models.LoginFormParser;
-import com.noteoverflow.models.RegisterFormParser;
+import com.noteoverflow.models.parser.ContactUsFormParser;
+import com.noteoverflow.models.parser.ForgotPasswordFormParser;
+import com.noteoverflow.models.parser.LoginFormParser;
+import com.noteoverflow.models.parser.RegisterFormParser;
+import com.noteoverflow.service.UserDetailsService;
+import java.security.Principal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -20,12 +25,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class FormController {
+        
+        @Autowired
+	private UserDetailsService userDetailsService; 
+        private String username;
+        
         @RequestMapping(value="/login")
-	public String renderLoginView(ModelMap model) {
+	public ModelAndView renderLoginView() {
             LoginFormParser loginFormParser = new LoginFormParser();
-            model.addAttribute("pageName","Giriş");
-            model.addAttribute("loginFormParser",loginFormParser);
-	    return "forms/login";
+            ModelAndView model = new ModelAndView();
+            model.setViewName("forms/login"); 
+            model.addObject("pageName","Giriş");
+            model.addObject("loginFormParser",loginFormParser);
+	    return model;
 	   }
         
         @RequestMapping(value="/signup")
@@ -35,7 +47,7 @@ public class FormController {
             return "forms/register";
 	   }
         
-        @RequestMapping(value="/reset-password")
+        @RequestMapping(value="/reset_password")
 	public String renderForgotPasswordView(ModelMap model) {
             model.addAttribute("forgotPasswordFormParser", new ForgotPasswordFormParser());
             model.addAttribute("pageName","Şifre Unuttum");
@@ -43,20 +55,14 @@ public class FormController {
 	   }
         
         @RequestMapping(value="/pages/contact", method = RequestMethod.GET)
-        public String renderContactView(ModelMap model) {
-	   
-          String title = "İletişim";
-           model.addAttribute("pageName",title);   
-           return "forms/contact";
-	   }
-        @RequestMapping(value="/error")
-	public String renderErrorView(ModelMap model) {
-            
-	      return "forms/error";
-	   }
-        @RequestMapping(value="/do/loginSecurityCheck.htm")
-	public String renderLoginSecurityCheckView(ModelMap model) {
-            
-	      return "actions/login_security_check";
-	   }
+        public String renderContactView(ModelMap model, Principal principal) {
+	  username = principal.getName();
+          ContactUsFormParser contactUsFormParser = new ContactUsFormParser();
+          String title = "Bize Ulaşın";
+          model.addAttribute("currentUser",userDetailsService.getUserDetailsByEmail(username)); 
+          model.addAttribute("contactUsFormParser", contactUsFormParser);
+          model.addAttribute("pageName",title);   
+          return "forms/contact";
+	 }
+        
 }

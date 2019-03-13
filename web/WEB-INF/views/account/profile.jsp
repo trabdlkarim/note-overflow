@@ -10,27 +10,26 @@
             <div class="col-xs-12">
                 <div class="profile-cover">
 
-                    <div class="profile-cover-image parallax" style="background-image: url(&quot;images/cover-louis-hawkins.jpg&quot;); background-position: 50% 0%;" data-stellar-background-ratio="0.6">
+                    <div class="profile-cover-image parallax bg-primary" 
+                     style="background-image: url(&quot;images/cover-louis-hawkins.jpg&quot;); background-position: 50% 0%;" 
+                     data-stellar-background-ratio="0.6">
                     </div>
-
-                    <div class="profile-avatar image">
-                        <img src="/noteoverflow/assets/caspero/avatar-louis-hawkins.jpg" align="Louis Hawkins">
-                    </div>
-
+                    <div class="profile-avatar avatar-lg image">
+                         <img src="${avatarPath}/${user.avatar}" align="${user.name} ${fuser.surname}">
+                      </div>
                     <div class="profile-user-information">
-                        <div class="profile-user-name">Louis Hawkins</div>
-                        <div class="profile-user-post">Director</div>
+                             <div class="profile-user-name">${user.name} ${user.surname}</div>
+                             <div class="profile-user-post">${user.username}</div>
                     </div>
-
                     <!-- PROFILE: Personal Menu -->
                     <div class="container-fluid">
                         <nav class="navbar personal-menu">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="http://vtdes.ru/demo/caspero/personal-profile.html#">Profile</a></li>
-                                <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#">Messenger</a></li>
-                                <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#">Tasks</a></li>
-                                <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#">Publications</a></li>
-                                <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#">Gallery</a></li>
+                                <li class="active"><a href="#">Profile</a></li>
+                                <li><a href="#">Messenger</a></li>
+                                <li><a href="#">Tasks</a></li>
+                                <li><a href="#">Publications</a></li>
+                                <li><a href="#">Gallery</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -96,9 +95,9 @@
                     <!-- Panel Footer -->
                     <div class="panel-footer">
                         <ul class="list-inline no-mb">
-                            <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#"><i class="icon-theme icon-brand-facebook fa fa-facebook"></i></a></li>
-                            <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#"><i class="icon-theme icon-brand-twitter fa fa-twitter"></i></a></li>
-                            <li><a href="http://vtdes.ru/demo/caspero/personal-profile.html#"><i class="icon-theme icon-brand-googleplus fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="icon-theme icon-brand-facebook fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-theme icon-brand-twitter fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-theme icon-brand-googleplus fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
                     <!-- /Panel Footer -->

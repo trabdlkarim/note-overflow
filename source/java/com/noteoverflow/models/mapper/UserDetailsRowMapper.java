@@ -25,6 +25,7 @@ public class UserDetailsRowMapper implements RowMapper<UserDetails>  {
       user.setUsername(rs.getString("username2"));
       user.setPhone(rs.getString("telefon"));
       user.setEmail("username");
+      user.setAvatar(rs.getString("profil_resmi"));
       return user; 
     }
     

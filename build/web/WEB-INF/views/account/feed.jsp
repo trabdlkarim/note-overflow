@@ -23,7 +23,7 @@
             </div>
             <!-- /New Messages -->
 
-            <!-- New Comments -->
+            <!-- Lecture Notes Count -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="card-box bg-danger">
                     <div class="box">
@@ -38,16 +38,16 @@
                     </div>
                 </div>
             </div>
-            <!-- /New Comments -->
+            <!-- / Lecture Notes Count -->
 
-            <!-- Today Earnings -->
+            <!-- Friends Count -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="card-box bg-info">
                     <div class="box">
                         <i class="icon fa fa-group"></i>
                         <div class="content">
                             <div class="title"><span class="strong">Bağıntılar</span></div>
-                            <div class="value">2,900</div>
+                            <div class="value">${currentUserFriendsCount}</div>
                         </div>
                     </div>
                     <div class="card-bottom">
@@ -55,9 +55,9 @@
                     </div>
                 </div>
             </div>
-            <!-- /Today Earnings -->
+            <!--/ Friends Count -->
 
-            <!-- New Clients -->
+            <!-- Likes -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="card-box bg-success">
                     <div class="box">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /New Clients -->
+            <!-- /Likes -->
 
         </div>
         <!-- /ELEMENTS: Card Boxes -->
@@ -370,7 +370,6 @@
 
                     <!-- Panel Heading -->
                     <div class="panel-heading">
-
                         <!-- Panel Title-->
                         <div class="panel-title">Yeni Bağıntılar</div>
                         <!-- /Panel Title-->
@@ -390,222 +389,40 @@
                     <div class="panel-body">
                             <!-- TABLE: Users -->
                             <table class="table table-responsive users-table">
-                                <!-- ROW: User -->
-                                <tbody><tr class="user">
+                                
+                                <tbody>
+                                  <c:forEach var="user" items="${currentUserFriendsList}"  end="7" >
+                                  <!-- ROW: User -->
+                                  <tr class="user">
                                     <td class="user-avatar">
                                         <!-- User Avatar -->
                                         <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs" class="mCS_img_loaded">
+                                        <a href="${user.username}/profile.htm"> 
+                                        <img src="${avatarPath}/${user.avatar}" alt="${user.name} ${user.surname}" class="mCS_img_loaded">
+                                        </a>
                                         </div>
                                         <!-- /User Avatar -->
                                     </td>
                                     <td>
                                         <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Benjamin Jacobs</a>
-                                        <div class="post">Director</div>
+                                        <a href="${user.username}/profile.htm" class="name">${user.name} ${user.surname}</a>
+                                        <div class="post">${user.username}</div>
                                         <!-- /User Info -->
                                     </td>
                                     <td>
                                         <!-- User Buttons -->
                                         <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
+                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
+                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
+                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
                                         </ul>
                                         <!-- /User Buttons -->
                                     </td>
                                 </tr>
                                 <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-deborah-young.jpg" alt="Deborah Young" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Deborah Young</a>
-                                        <div class="post">Animation Designer</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-louis-hawkins.jpg" alt="Louis Hawkins" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Louis Hawkins</a>
-                                        <div class="post">Marketing Director</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-ashley-warren.jpg" alt="Ashley Warren" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Ashley Warren</a>
-                                        <div class="post">Account Manager</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-christopher-tucker.jpg" alt="Christopher Tucker" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Christopher Tucker</a>
-                                        <div class="post">Director</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-lori-harrison.jpg" alt="Lori Harrison" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Lori Harrison</a>
-                                        <div class="post">Animation Designer</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-phillip-cole.jpg" alt="Phillip Cole" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Phillip Cole</a>
-                                        <div class="post">Marketing Director</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-ann-james.jpg" alt="Ann James" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Ann James</a>
-                                        <div class="post">Account Manager</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-                            </tbody></table>
+                                </c:forEach>
+                                </tbody>
+                                </table>
                             <!-- /TABLE: Users -->
                     </div>
                     <!-- /Panel Body -->
@@ -690,7 +507,7 @@
                                                         </div>
                                                         <p class="no-mb">
                                                         <h4 class="strong title"> 
-                                                          <a href="#" class="text-dark fa fa-file-o">
+                                                          <a href="post.htm" class="text-dark fa fa-file-o">
                                                            Title of the Lecture Note - Algorithms
                                                           </a>
                                                         </h4>

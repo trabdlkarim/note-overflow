@@ -6,7 +6,6 @@
 package com.noteoverflow.service.impl;
 
 import com.noteoverflow.dao.UserDetailsDAO;
-import com.noteoverflow.dao.impl.UserDetailsDAOImpl;
 import com.noteoverflow.models.UserDetails;
 import com.noteoverflow.service.UserDetailsService;
 import java.util.List;
@@ -24,13 +23,23 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     private UserDetailsDAO userDetailsDAO;
     
     @Override
-    public UserDetails getUserDetails(String username) {
-      return userDetailsDAO.getUserDetails(username);
+    public UserDetails getUserDetailsByEmail(String email) {
+      return userDetailsDAO.getUserDetailsByEmail(email);
+    }
+    
+    @Override
+    public UserDetails getUserDetailsByUsername(String username) {
+      return userDetailsDAO.getUserDetailsByUsername(username);
     }
 
     @Override
     public List<UserDetails> getFriendsList(int id) {
        return userDetailsDAO.getFriendsList(id);
+    }
+    
+    @Override
+    public int getFriendsCount(int id){
+        return this.getFriendsList(id).size();
     }
     
 }

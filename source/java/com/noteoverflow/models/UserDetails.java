@@ -16,6 +16,8 @@ public class UserDetails {
    private String username;
    private String phone;
    private String email;
+   private String avatar;
+         
    
    public String getName() {
         return name;
@@ -64,5 +66,14 @@ public class UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+   
    
 }

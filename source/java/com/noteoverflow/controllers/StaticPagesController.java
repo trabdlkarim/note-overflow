@@ -27,7 +27,8 @@ public class StaticPagesController {
     @RequestMapping(value="/pages/about", method = RequestMethod.GET)
     public String renderAboutView(ModelMap model,Principal principal) {
         username = principal.getName();
-        model.addAttribute("currentUser",userDetailsService.getUserDetails(username));     
+        model.addAttribute("currentUser",
+                userDetailsService.getUserDetailsByEmail(username));     
         String title = "Hakkımızda";
         model.addAttribute("pageName",title);
         
@@ -37,7 +38,8 @@ public class StaticPagesController {
     @RequestMapping(value="/pages/terms", method = RequestMethod.GET)
     public String renderTermsView(ModelMap model,Principal principal) {
         username = principal.getName();
-        model.addAttribute("currentUser",userDetailsService.getUserDetails(username));
+        model.addAttribute("currentUser",
+                userDetailsService.getUserDetailsByEmail(username));
         String title = "Kullanım Şartları";
         model.addAttribute("pageName",title);
         
@@ -47,7 +49,8 @@ public class StaticPagesController {
     @RequestMapping(value="/pages/privacy", method = RequestMethod.GET)
     public String renderPrivacyView(ModelMap model,Principal principal) {
         username = principal.getName();
-        model.addAttribute("currentUser",userDetailsService.getUserDetails(username));             
+        model.addAttribute("currentUser",
+                userDetailsService.getUserDetailsByEmail(username));             
         String title = "Gizlilik Politikası";
         model.addAttribute("pageName",title);
         
@@ -58,7 +61,8 @@ public class StaticPagesController {
     @RequestMapping(value="/pages/stats", method = RequestMethod.GET)
     public String renderStatsView(ModelMap model,Principal principal) {
         username = principal.getName();
-        model.addAttribute("currentUser",userDetailsService.getUserDetails(username));  
+        model.addAttribute("currentUser",
+                userDetailsService.getUserDetailsByEmail(username));  
         String title = "İstatistik";
         model.addAttribute("pageName",title);
         
@@ -69,7 +73,8 @@ public class StaticPagesController {
       String title = "Linkler";
       model.addAttribute("pageName",title);
       username = principal.getName();
-      model.addAttribute("currentUser",userDetailsService.getUserDetails(username));
+      model.addAttribute("currentUser",
+              userDetailsService.getUserDetailsByEmail(username));
       return "static/resources";
        
    }

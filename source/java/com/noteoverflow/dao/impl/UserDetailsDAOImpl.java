@@ -10,6 +10,7 @@ import com.noteoverflow.models.UserDetails;
 import com.noteoverflow.models.mapper.UserDetailsRowMapper;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,31 +25,47 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
     private String sql;
     /** 
      * This methods allows to get the user with the given id.
-     * @param username
+     * @param email
      * @return
      */
     @Transactional
     @Override
-    public UserDetails getUserDetails(String username) {
+    public UserDetails getUserDetailsByEmail(String email) {
         
-     sql = "SELECT uye_id, uye_adi, uye_soyadi, username, username2, telefon "
-            + "FROM uyeler WHERE username = ?";
+     sql = "SELECT uye_id, uye_adi, uye_soyadi, username, username2, telefon, "
+            + "profil_resmi FROM uyeler WHERE username = ?";
      UserDetails userDetails = (UserDetails) jdbcTemplate.queryForObject(
              sql,
-             new Object[] {username},
+             new Object[] {email},
              new UserDetailsRowMapper());
      
      return userDetails;
     }
 
+    @Transactional
+    @Override
+    public UserDetails getUserDetailsByUsername(String username) {
+        
+     sql = "SELECT uye_id, uye_adi, uye_soyadi, username, username2, telefon, "
+            + "profil_resmi FROM uyeler WHERE username2 = ?";
+     
+     UserDetails userDetails = (UserDetails) jdbcTemplate.queryForObject(
+             sql,
+             new Object[] {username},
+             new UserDetailsRowMapper());
+    
+     return userDetails;
+    }
+    
+    @Transactional
     @Override
     public List<UserDetails> getFriendsList(int id) {
-        sql = "SELECT u.uye_id, u.uye_adi, u.uye_soyadi, u.username, u.username2, u.telefon "
-               + "FROM arkadaslar as f, uyeler as u WHERE f.arkadas_id = u.uye_id "
-               + "AND f.uye_id = ?";
+        sql = "SELECT u.uye_id, u.uye_adi, u.uye_soyadi, u.username, u.username2, u.telefon, "
+               + "u.profil_resmi FROM arkadaslar as f, uyeler as u WHERE f.arkadas_id = u.uye_id "
+               + "AND f.uye_id = ? ORDER BY f.arkadas_olma_tarihi";
         List <UserDetails> friendsList = (List<UserDetails>) 
-                jdbcTemplate.queryForObject(sql, new Object[] {id},
-                                            new UserDetailsRowMapper());
+                jdbcTemplate.query(sql, new Object[] {id},
+                                   new UserDetailsRowMapper());
      
      return friendsList;
     }

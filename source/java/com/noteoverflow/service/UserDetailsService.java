@@ -14,7 +14,11 @@ import java.util.List;
  */
 public interface UserDetailsService {
  
-    public UserDetails getUserDetails(String username);
+    public UserDetails getUserDetailsByEmail(String email);
+    
+    public UserDetails getUserDetailsByUsername(String username); 
+    
+    public int getFriendsCount(int id);
 
     public List<UserDetails> getFriendsList(int id);   
 }

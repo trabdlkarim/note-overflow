@@ -51,7 +51,6 @@
 
                 <!-- Buttons -->
                 <li>
-
                     <!-- Search Form -->
                     <form class="navbar-search-form">
                         <div class="form-group">
@@ -64,6 +63,12 @@
                         <i class="icon icon-inline fa fa-search"></i> <span class="hidden-sm hidden-md hidden-lg">Ara</span>
                     </a>
                 </li>
+                
+                <li> <a href="add_new_note.htm"><i class="fa fa-plus-square"></i>
+                     <span class="hidden-sm hidden-md hidden-lg">Yeni Not</span>
+                    </a>
+                </li>
+                
                 <li class="dropdown">
 
                     <a href="<c:url context='${rootContext}' value='/user/notifications.htm'/>" class="dropdown-toggle no-caret nav-notification" data-toggle="dropdown">
@@ -193,7 +198,7 @@
                     <!-- Profile avatar -->
                     <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile-avatar circle">
-                            <img src="<c:url context='${appAssets}' value='/img/profiles/avatar-default.png'/>" alt="${currentUser.name} ${currentUser.surname}">
+                            <img src="<c:url context='${avatarPath}' value='/${currentUser.avatar}'/>" alt="${currentUser.name} ${currentUser.surname}">
                         </div>
                         <span class="user-name">${currentUser.name}</span>
                     </a>

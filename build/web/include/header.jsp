@@ -23,7 +23,6 @@
 
     <!-- Custom styles for this template -->
     <link href="${appAssets}/csoon/css/coming-soon.min.css" rel="stylesheet">
-    
   </head>
   <body>  
     <div class="overlay"></div>

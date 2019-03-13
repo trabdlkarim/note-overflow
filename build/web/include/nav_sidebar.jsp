@@ -13,7 +13,7 @@
                 <!-- Profile Avatar -->
                 <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>" class="dropdown-toggle" data-toggle="dropdown">
                     <div class="avatar avatar-lg">
-                        <img src="<c:url context='${appAssets}' value='/img/profiles/avatar-default.png'/>" alt="${currentUser.name} ${currentUser.surname}" class="mCS_img_loaded">
+                        <img src="<c:url context='${avatarPath}' value='/${currentUser.avatar}'/>" alt="${currentUser.name} ${currentUser.surname}" class="mCS_img_loaded">
                     </div>
                 </a>
                 <!-- /Profile Avatar -->

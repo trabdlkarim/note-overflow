@@ -14,8 +14,9 @@ import java.util.List;
  */
 public interface UserDetailsDAO {
     
-    public UserDetails getUserDetails(String username);
+    public UserDetails getUserDetailsByEmail(String email);
 
     public List<UserDetails> getFriendsList(int id);
     
+    public UserDetails getUserDetailsByUsername(String username);
 }

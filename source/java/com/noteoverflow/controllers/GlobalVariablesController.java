@@ -6,6 +6,7 @@
 package com.noteoverflow.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  *
  * @author trabdlkarim
  */
-
+@Controller
 @ControllerAdvice
 public final class GlobalVariablesController {
     
@@ -27,6 +28,8 @@ public final class GlobalVariablesController {
        model.addAttribute("rootContext","/noteoverflow");
        model.addAttribute("appAssets","/noteoverflow/assets");
        model.addAttribute("appLicense","copyright 2019. All Rights Reserved");
-       
+       model.addAttribute("avatarPath","/noteoverflow/cdn/media/dbms/img/avatar");
+       model.addAttribute("lectureNotePath","/noteoverflow/cdn/media/dbms/notes");
+
     }
 }

@@ -22,7 +22,7 @@
                         <h3 class="panel-title">Lütfen Giriş Yapınız</h3>
                     </div>
                     <div class="panel-body">                        
-                        <form:form name="loginForm"  modelAttribute="loginFormParser" action="do/loginSecurityCheck.htm" method="POST">
+                        <form:form name="loginForm"  modelAttribute="loginFormParser" action="${rootContext}/do/loginSecurityCheck.htm" method="POST">
                                 <div class="form-group">
                                     <div class="input-group-prepend">
 		                      <span class="input-group-text"> 
@@ -54,14 +54,14 @@
                                      if (timeoutMessage != null && timeoutMessage.trim().equals("true")) {
                                         out.println("<p><small class='text-danger'>Oturumunuz sona erdi. Lütfen tekrar oturum açın!</small></p>");}
                                     %>
-                                    <form:label path="forgotPasswordLabel">
+                                    <label>
                                         <a href="reset-password.htm" class="btn btn-secondary">
                                             <strong>Şifre unuttunuz mu?</strong>
                                         </a>
-                                    </form:label>
+                                    </label>
                                 <div class="checkbox">
                                     <form:checkbox name="rememberMeCheckbox" path="rememberMeCheckbox" value="Remember Me"/>
-                                    <form:label path="rememberMeLabel">Beni Hatırla</form:label>
+                                    <label>Beni Hatırla</label>
                                 </div>
                                 <div class="input-group-append form-group">
                                     <form:button  type="submit" id="loginSubmit" class="btn btn-lg btn-success btn-block">
