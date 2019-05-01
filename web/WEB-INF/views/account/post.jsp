@@ -50,49 +50,38 @@
                                             <div class="post no-mb">
                                                         <div class="clearfix">
                                                             <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                               <img src="/noteoverflow/assets/caspero/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs">
+                                                            <a href="<c:url context='${rootContext}' value='/user/${post.ownerUsername}/profile.htm'/>">
+                                                               <img src="${avatarPath}/${post.ownerAvatar}" alt="${post.ownerFullname}">
                                                             </a>
                                                         </div>
                                                         
                                                         <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Benjamin Jacobs
+                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/${post.ownerUsername}/profile.htm'/>">
+                                                                ${post.ownerFullname}
                                                             </a>
                                                         </div>
                                                         <div class="small text-muted">
-                                                            <span class="box fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="box fa fa-clock-o"> 15:58</span>
+                                                            <span class="box fa fa-calendar">  ${post.date},</span>
+                                                            <span class="box fa fa-clock-o">${post.time}</span>
                                                         </div>
                                                         </div>
                                                         <p class="no-mb">
                                                         <h1 class="strong text-dark title"> 
-                                                           Title of the Lecture Note - Algorithms
+                                                           ${post.title}
                                                         </h1>
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
+                                                          ${post.description}
                                                         </p>
-                                                        <p> <h4> <button class="btn btn-danger  btn-rounded" type="button">
-                                                             <i class="fa fa-download"></i> Dosyası İndir</button>  file_to_download.pdf </h4></p>
+                                                        <p> <button class="btn btn-danger  btn-rounded" type="button">
+                                                             <i class="fa fa-download"></i> Dosyası İndir</button></p>
                                             </div>
                             </div>
                             <!-- /Panel body -->
 
                             <!-- Panel footer -->
                             <div class="panel-footer ">
-                                <span class="box text-sm">8.Yarıyıl</span>
+                                <span class="box text-sm">${post.courseTerm}</span>
                                 <span class="box">|</span>
-                                <span class="box text-sm">Yapay Zeka ve Uzman Sistemleri</span>
+                                <span class="box text-sm">${post.courseName}</span>
                                 <span class="box">|</span>
                                 <span class="box">
                                 <a href="#" class="text-dark fa fa-download"> 12</a> 
@@ -118,7 +107,7 @@
                                 <!-- Panel title -->
                                 <div class="panel-title box mb-4">
                                   <i class="icon fa fa-fw fa-comments"></i>
-                                  Yorumlar (2)
+                                  Yorumlar (1)
                                 </div>
                                 <!-- /Panel title -->
                             </div>
@@ -130,9 +119,9 @@
                         <table>
            <tr>
               <div class="avatar avatar-lg pull-left" style="margin-right:2%;" >
-                  <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                       <img src="/noteoverflow/assets/caspero/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs">
-                   </a>
+                <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
+                  <img src="${avatarPath}/${currentUser.avatar}" alt="${currentUser.name} ${currentUser.surname} ">
+                </a>
              </div>
             <td >
               <div class="pull-right">
@@ -202,15 +191,7 @@
                                                          Description goes here description goes here.
                                                          Description goes here description goes here.
                                                          Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
+                                                         
                                                          </p>
                                                          </div>
                                                      </td>
@@ -220,75 +201,7 @@
                             </div>
                             <!-- /Panel body -->
                          </div>
-                         <div class="panel">
-                            <!-- Panel controls -->
-                                <div class="panel-controls">
-                                    <div class="panel-buttons">
-                                        <div class="dropdown">
-                                            <a class="btn-panel-control icon fa fa-ellipsis-h dropdown-toggle" 
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                                 <li><a href="#">Düzelt</a>
-                                                                     </li>
-                                                                     <li><a href="#">Gizlilik</a>
-                                                                     </li>
-                                                                     <li><a href="#">Sil</a>
-                                                                     </li>
-                                                                      <li class="divider"></li>
-                                                                      <li><a href="#">Paylaş</a>
-                                                                      </li>
-                                                                      <li><a href="#">E-Posta olarak Gönder</a>
-                                                                      </li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            <!-- /Panel controls -->
-                            <!-- Panel body -->
-                            <div class="panel-body">
-                           
-                                            <div class="post no-mb">
-                                                    <table>
-                                                        <tr>
-                                                          <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                               <img src="/noteoverflow/assets/caspero/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs">
-                                                            </a>
-                                                           </div>
-                                                         <td>
-                                                        <div class="pull-right">
-                                                         <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Benjamin Jacobs
-                                                            </a>
-                                                        </div>
-                                                        <div class="small text-muted mb-4">
-                                                            <span class="text-sm fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="text-sm fa fa-clock-o"> 15:58</span>
-                                                        </div>
-                                                        <p class="no-mb rounded-circle">
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         </p>
-                                                         </div>
-                                                     </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                            </div>
-                            <!-- /Panel body -->
-                         </div>                                                                 
+                                                                                   
                         </div>  
                         <!--/ Panel body -->
                          <!-- Panel footer -->

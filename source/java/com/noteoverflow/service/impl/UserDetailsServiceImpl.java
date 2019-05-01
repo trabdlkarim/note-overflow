@@ -41,5 +41,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     public int getFriendsCount(int id){
         return this.getFriendsList(id).size();
     }
+
+    @Override
+    public UserDetails getUserDetailsById(int userId) {
+       return userDetailsDAO.getUserDetailsById(userId);
+    }
     
 }

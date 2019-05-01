@@ -5,6 +5,9 @@
  */
 package com.noteoverflow;
 
+import java.io.File;
+import java.util.Date;
+
 
 /**
  *
@@ -13,6 +16,11 @@ package com.noteoverflow;
 public class NoteOverflow {
    
   public static void main(String args[]){
-   
+    String datetime = new Date().toString();
+    //datetime = datetime.replace(" ", "");
+    //datetime = datetime.replace(":", "");
+   System.out.println(datetime);
+   System.out.println(System.currentTimeMillis());
+
   }
 }

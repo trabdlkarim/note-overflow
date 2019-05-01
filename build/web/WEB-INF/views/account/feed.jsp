@@ -4,8 +4,8 @@
 <%@taglib tagdir="/WEB-INF/tags/layouts" prefix="layout" %>
 
 <c:set var="bodyContent">
-        <!-- ELEMENTS: Card Boxes -->
-        <div class="row">
+<!-- ELEMENTS: Card Boxes -->
+<div class="row">
             <!-- New Messages -->
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="card-box bg-primary">
@@ -13,7 +13,7 @@
                         <i class="icon fa fa-envelope-o"></i>
                         <div class="content">
                             <div class="title"><span class="strong">Yeni Mesajlar</span></div>
-                            <div class="value">138</div>
+                            <div class="value">0</div>
                         </div>
                     </div>
                     <div class="card-bottom">
@@ -30,7 +30,7 @@
                         <i class="icon fa fa-tasks"></i>
                         <div class="content">
                             <div class="title"><span class="strong">Ders Notları</span></div>
-                            <div class="value">792</div>
+                            <div class="value">${currentUserNotesCount}</div>
                         </div>
                     </div>
                     <div class="card-bottom">
@@ -64,7 +64,7 @@
                         <i class="icon fa fa-thumbs-up"></i>
                         <div class="content">
                             <div class="title"><span class="strong">Beğenler</span></div>
-                            <div class="value">18</div>
+                            <div class="value">0</div>
                         </div>
                     </div>
                     <div class="card-bottom">
@@ -75,13 +75,185 @@
             <!-- /Likes -->
 
         </div>
-        <!-- /ELEMENTS: Card Boxes -->
-       
-        <!-- Elements Row -->
-         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                        <!-- PANEL: Current Activities -->
-                        <div class="panel panel-activities">
+<!-- /ELEMENTS: Card Boxes -->
+
+<!-- Elements Row -->  
+<div class="row">
+     <div class="col-xs-12 col-sm-12 col-md-7">
+     <c:choose>
+     <c:when test="${posts!=null}">
+        <c:forEach var="post" items="${posts}" >
+                 <!-- PANEL: Lecture Note Post -->
+                         <div class="panel panel-activities">
+                            <!-- Panel heading -->
+                            <div class="panel-heading">
+                                <!-- Panel title -->
+                                <div class="panel-title">
+                                  <a href="#">
+                                    <i class="icon fa fa-fw fa-eye"></i>
+                                  </a>
+                                </div>
+                                <!-- /Panel title -->
+
+                                <!-- Panel controls -->
+                                <div class="panel-controls">
+                                    <div class="panel-buttons">
+                                        <div class="dropdown">
+                                            <a class="btn-panel-control icon fa fa-ellipsis-h dropdown-toggle" 
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
+                                                <li><a href="#">Düzelt</a></li>
+                                                <li><a href="#">Gizlilik</a></li>
+                                                <li><a href="#">Sil</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Paylaş</a></li>
+                                                <li><a href="#">E-Posta olarak Gönder</a></li>  
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Panel controls -->
+                            </div>
+                            <!-- /Panel heading -->
+
+                            <!-- Panel body -->
+                            <div class="panel-body">
+                              <!-- TABLE: Pending -->
+                              <div class="post no-mb">
+                                                        <div class="clearfix">
+                                                            <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
+                                                            <a href="<c:url context='${rootContext}' value='/user/${post.ownerUsername}/profile.htm'/>">
+                                                               <img src="${avatarPath}/${post.ownerAvatar}" alt="${post.ownerFullname}">
+                                                            </a>
+                                                        </div>
+                                                        
+                                                        <div class="name">
+                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/${post.ownerUsername}/profile.htm'/>">
+                                                                ${post.ownerFullname}
+                                                            </a>
+                                                            <span class="text-sm"> Yeni bir <a href="<c:url context='${rootContext}' value='/user/post.htm?postId=${post.postId}'/>" class="text-primary">ders notu</a> ekledi.</span>
+                                                        </div>
+                                                        <div class="small text-muted">
+                                                            <span class="box fa fa-calendar"> ${post.date},</span>
+                                                            <span class="box fa fa-clock-o"> ${post.time}</span>
+                                                        </div>
+                                                        </div>
+                                                        <p class="no-mb">
+                                                        <h4 class="strong title"> 
+                                                            <i class="fa fa-file"></i>
+                                                            <a href="<c:url context='${rootContext}' value='/user/post.htm?postId=${post.postId}'/>" class="strong text-primary">
+                                                           ${post.title}
+                                                          </a>
+                                                        </h4>
+                                                         ${post.description}
+                                                        </p>
+                                            </div>
+                            </div>
+                            <!-- /Panel body -->
+
+                            <!-- Panel footer -->
+                            <div class="panel-footer ">
+                                <span class="box text-sm">${post.courseTerm}</span>
+                                <span class="box">|</span>
+                                <span class="box text-sm">${post.courseName}</span>
+                                <span class="box">|</span>
+                                <span class="box">
+                                <a href="#" class="text-dark fa fa-download"> 12</a> 
+                                </span>
+                                <span class="box">|</span>
+                                <span class="box">
+                                <a href="#" class="text-dark fa fa-comments"> 20</a>
+                                </span>
+                                <span class="box">|</span>
+                                <span class="box">
+                                <a  class="text-dark fa fa-thumbs-up"> 142</a>
+                                </span>
+                               <span class="box">|</span>
+                               <span class="box fa fa-paperclip text-dark "> 165 KB</span>
+                             </div>
+                             <!-- /Panel footer -->
+                        </div>
+              <!--/ PANEL: Lecture Note Post -->                           
+        
+        </c:forEach>
+     </c:when>
+     <c:otherwise>
+     <p><h4 class="text-uppercase">Boş Akışı</h4></p>
+     </c:otherwise>
+</c:choose> 
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-5">
+    <!-- PANEL: Users -->
+        <div class="panel panel-users">
+
+                    <!-- Panel Heading -->
+                    <div class="panel-heading">
+                        <!-- Panel Title-->
+                        <div class="panel-title">Yeni Bağıntılar</div>
+                        <!-- /Panel Title-->
+
+                        <!-- Panel Controls -->
+                        <div class="panel-controls">
+                            <ul class="panel-buttons">
+                                <li><i class="btn-panel-control icon fa fa-group"></i></li>
+                            </ul>
+                        </div>
+                        <!-- /Panel Controls -->
+
+                    </div>
+                    <!-- /Panel Heading -->
+
+                    <!-- Panel Body -->
+                    <div class="panel-body">
+                            <!-- TABLE: Users -->
+                            <table class="table table-responsive users-table">
+                                
+                                <tbody>
+                                  <c:forEach var="user" items="${currentUserFriendsList}"  end="5" >
+                                  <!-- ROW: User -->
+                                  <tr class="user">
+                                    <td class="user-avatar">
+                                        <!-- User Avatar -->
+                                        <div class="avatar image">
+                                        <a href="${user.username}/profile.htm"> 
+                                        <img src="${avatarPath}/${user.avatar}" alt="${user.name} ${user.surname}" class="mCS_img_loaded">
+                                        </a>
+                                        </div>
+                                        <!-- /User Avatar -->
+                                    </td>
+                                    <td>
+                                        <!-- User Info -->
+                                        <a href="${user.username}/profile.htm" class="name">${user.name} ${user.surname}</a>
+                                        <div class="post">${user.username}</div>
+                                        <!-- /User Info -->
+                                    </td>
+                                    <td>
+                                        <!-- User Buttons -->
+                                        <ul class="inline-icons">
+                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
+                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
+                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
+                                        </ul>
+                                        <!-- /User Buttons -->
+                                    </td>
+                                </tr>
+                                <!-- /ROW: User -->
+                                </c:forEach>
+                                </tbody>
+                                </table>
+                            <!-- /TABLE: Users -->
+                    </div>
+                    <!-- /Panel Body -->
+                     <!-- Panel footer -->
+                        <div class="panel-footer ">
+                            <a href="<c:url context='${rootContext}' value='/user/friends.htm'/>"><i class="icon fa fa-arrow-circle-o-down"></i> Tüm Bağıntılarım Göster</a>
+                        </div>
+                            <!-- /Panel footer -->
+                </div>
+    <!-- /PANEL: Users -->
+    <!-- PANEL: Current Activities -->
+       <div class="panel panel-activities">
                             <!-- Panel heading -->
                             <div class="panel-heading">
                                 <!-- Panel title -->
@@ -124,8 +296,8 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
@@ -145,8 +317,8 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
@@ -166,8 +338,8 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
@@ -188,8 +360,8 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
@@ -210,15 +382,13 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
                                     </li>
                                     <!-- /Activity -->
-
-
                                     <!-- Activity -->
                                     <li class="list-group-item">
 
@@ -233,8 +403,8 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
@@ -254,35 +424,13 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
                                     </li>
                                     <!-- /Activity -->
-                                    <!-- Activity -->
-                                    <li class="list-group-item">
-
-                                        <!-- Activity content -->
-                                        <i class="icon icon-theme icon-theme-xs icon-warning fa fa-warning"></i> Please check the mail settings
-                                        <span class="label label-default activity-date">7h ago</span>
-                                        <!-- /Activity content -->
-
-                                        <!-- Activity dropdown menu -->
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- /Activity dropdown menu -->
-                                    </li>
-                                    <!-- /Activity -->
-
                                     <!-- Activity -->
                                     <li class="list-group-item">
 
@@ -297,58 +445,13 @@
                                                 <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
+                                                <li><a href="#"><i class="icon fa fa-times"></i> Hide</a></li>
+                                                <li><a href="#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
                                             </ul>
                                         </div>
                                         <!-- /Activity dropdown menu -->
                                     </li>
                                     <!-- /Activity -->
-
-                                    <!-- Activity -->
-                                    <li class="list-group-item">
-
-                                        <!-- Activity content -->
-                                        <i class="icon icon-theme icon-theme-xs icon-primary fa fa-envelope"></i> You have 73 new messages
-                                        <span class="label label-default activity-date">2d ago</span>
-                                        <!-- /Activity content -->
-
-                                        <!-- Activity dropdown menu -->
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- /Activity dropdown menu -->
-                                    </li>
-                                    <!-- /Activity -->
-
-                                    <!-- Activity -->
-                                    <li class="list-group-item">
-
-                                        <!-- Activity content -->
-                                        <i class="icon icon-theme icon-theme-xs icon-primary fa fa-line-chart"></i> New reports have been generated
-                                        <span class="label label-default activity-date">2d ago</span>
-                                        <!-- /Activity content -->
-
-                                        <!-- Activity dropdown menu -->
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <i class="icon fa fa-fw fa-gears"></i> <i class="icon fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-times"></i> Hide</a></li>
-                                                <li><a href="http://vtdes.ru/demo/caspero/#"><i class="icon fa fa-trash-o"></i> Remove</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- /Activity dropdown menu -->
-                                    </li>
-                                    <!-- /Activity -->
-
                                 </ul>
                                 <!-- /Activities list -->
 
@@ -362,603 +465,49 @@
                             <!-- /Panel footer -->
 
                         </div>
-                        <!-- /PANEL: Current Activities -->
-             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-             <!-- PANEL: Users -->
-                <div class="panel panel-users">
-
+   <!-- /PANEL: Current Activities -->
+   <!-- PANEL: Site Visits Line Chart -->
+        <div class="panel">
                     <!-- Panel Heading -->
                     <div class="panel-heading">
-                        <!-- Panel Title-->
-                        <div class="panel-title">Yeni Bağıntılar</div>
-                        <!-- /Panel Title-->
-
-                        <!-- Panel Controls -->
-                        <div class="panel-controls">
-                            <ul class="panel-buttons">
-                                <li><i class="btn-panel-control icon fa fa-group"></i></li>
-                            </ul>
-                        </div>
-                        <!-- /Panel Controls -->
-
+                        <!-- Panel Title -->
+                        <div class="panel-title">İstatistik</div>
+                        <!-- /Panel Title -->
                     </div>
                     <!-- /Panel Heading -->
 
                     <!-- Panel Body -->
                     <div class="panel-body">
-                            <!-- TABLE: Users -->
-                            <table class="table table-responsive users-table">
+                                <div class="canvas-holder">
                                 
-                                <tbody>
-                                  <c:forEach var="user" items="${currentUserFriendsList}"  end="7" >
-                                  <!-- ROW: User -->
-                                  <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                        <a href="${user.username}/profile.htm"> 
-                                        <img src="${avatarPath}/${user.avatar}" alt="${user.name} ${user.surname}" class="mCS_img_loaded">
-                                        </a>
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="${user.username}/profile.htm" class="name">${user.name} ${user.surname}</a>
-                                        <div class="post">${user.username}</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-                                </c:forEach>
-                                </tbody>
-                                </table>
-                            <!-- /TABLE: Users -->
+                            <canvas id="demo-chart-line" width="418" height="250" style="display: block; width: 418px; height: 250px;"></canvas>
+                        </div>
+                        <div class="row mt-0p5 text-center">
+                            <div class="col-xs-4">
+                                <i class="icon-theme icon-theme-sm fa fa-line-chart icon-dark"></i> Açık
+                                <div class="mt-0p5 rate rate-up">18.7</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <i class="icon-theme icon-theme-sm fa fa-line-chart icon-info"></i> Ortak
+                                <div class="mt-0p5 rate rate-down">1.7</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <i class="icon-theme icon-theme-sm fa fa-line-chart icon-danger"></i> Gizli
+                                <div class="mt-0p5 rate rate-up">4.8</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /Panel Body -->
-                     <!-- Panel footer -->
-                        <div class="panel-footer ">
-                            <a href="<c:url context='${rootContext}' value='/user/friends.htm'/>"><i class="icon fa fa-arrow-circle-o-down"></i> Tüm Bağıntılarım Göster</a>
-                        </div>
-                            <!-- /Panel footer -->
+                    <!-- Panel footer -->
+                            <div class="panel-footer ">
+                                <a href="<c:url context='${rootContext}' value='/user/stats.htm'/>"><i class="icon fa fa-arrow-circle-o-down"></i> Tümünü Göster</a>
+                            </div>
+                 <!-- /Panel footer -->
                 </div>
-                <!-- /PANEL: Users -->
-            </div>
-         </div>
-         <!--/ Elements Row -->
-        
-         <hr class="divider"/>
-        
-        <!-- Elements Row -->  
-        <div class="row">
-            
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                        <!-- PANEL: Lecture Note Post -->
-                        <div class="panel panel-activities">
-                            <!-- Panel heading -->
-                            <div class="panel-heading">
-                                <!-- Panel title -->
-                                <div class="panel-title">
-                                  <a href="#">
-                                    <i class="icon fa fa-fw fa-eye"></i>
-                                  </a>
-                                </div>
-                                <!-- /Panel title -->
-
-                                <!-- Panel controls -->
-                                <div class="panel-controls">
-                                    <div class="panel-buttons">
-                                        <div class="dropdown">
-                                            <a class="btn-panel-control icon fa fa-angle-down dropdown-toggle" 
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                                 <li><a href="#">Düzelt</a>
-                                                                     </li>
-                                                                     <li><a href="#">Gizlilik</a>
-                                                                     </li>
-                                                                     <li><a href="#">Sil</a>
-                                                                     </li>
-                                                                      <li class="divider"></li>
-                                                                      <li><a href="#">Paylaş</a>
-                                                                      </li>
-                                                                      <li><a href="#">E-Posta olarak Gönder</a>
-                                                                      </li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Panel controls -->
-
-                            </div>
-                            <!-- /Panel heading -->
-
-                            <!-- Panel body -->
-                            <div class="panel-body">
-                              <!-- TABLE: Pending -->
-                                            <div class="post no-mb">
-                                                        <div class="clearfix">
-                                                            <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                               <img src="/noteoverflow/assets/caspero/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs">
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Benjamin Jacobs
-                                                            </a>
-                                                            <span class="text-sm"> Yeni bir <a href="#" class="text-primary">ders notu</a> ekledi.</span>
-                                                        </div>
-                                                        <div class="small text-muted">
-                                                            <span class="box fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="box fa fa-clock-o"> 15:58</span>
-                                                        </div>
-                                                        </div>
-                                                        <p class="no-mb">
-                                                        <h4 class="strong title"> 
-                                                          <a href="post.htm" class="text-dark fa fa-file-o">
-                                                           Title of the Lecture Note - Algorithms
-                                                          </a>
-                                                        </h4>
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                        </p>
-                                                    
-                                                    
-                                                    
-                                            </div>
-                            </div>
-                            <!-- /Panel body -->
-
-                            <!-- Panel footer -->
-                            <div class="panel-footer ">
-                                <span class="box text-sm">8.Yarıyıl</span>
-                                <span class="box">|</span>
-                                <span class="box text-sm">Yapay Zeka ve Uzman Sistemleri</span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-download"> 12</a> 
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-comments"> 20</a>
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a  class="text-dark fa fa-thumbs-up"> 142</a>
-                                </span>
-                               <span class="box">|</span>
-                               <span class="box fa fa-paperclip text-dark "> 165 KB</span>
-                             </div>
-                             <!-- /Panel footer -->
-                        </div>
-                        <!--/ PANEL: Lecture Note Post -->                           
-                     </div>
-                                                                
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                        <!-- PANEL: Lecture Note Post -->
-                        <div class="panel panel-activities">
-                            <!-- Panel heading -->
-                            <div class="panel-heading">
-                                <!-- Panel title -->
-                                <div class="panel-title">
-                                  <a href="#">
-                                    <i class="icon fa fa-fw fa-eye"></i>
-                                  </a>
-                                </div>
-                                <!-- /Panel title -->
-
-                                <!-- Panel controls -->
-                                <div class="panel-controls">
-                                    <div class="panel-buttons">
-                                        <div class="dropdown">
-                                            <a class="btn-panel-control icon fa fa-angle-down dropdown-toggle" 
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                                 <li><a href="#">Düzelt</a>
-                                                                     </li>
-                                                                     <li><a href="#">Gizlilik</a>
-                                                                     </li>
-                                                                     <li><a href="#">Sil</a>
-                                                                     </li>
-                                                                      <li class="divider"></li>
-                                                                      <li><a href="#">Paylaş</a>
-                                                                      </li>
-                                                                      <li><a href="#">E-Posta olarak Gönder</a>
-                                                                      </li>  
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Panel controls -->
-
-                            </div>
-                            <!-- /Panel heading -->
-
-                            <!-- Panel body -->
-                            <div class="panel-body">
-                              <!-- TABLE: Pending -->
-                                            <div class="post no-mb">
-                                                        <div class="clearfix">
-                                                            <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                               <img src="/noteoverflow/assets/caspero/avatar-ashley-warren.jpg" alt="Ashley Warren">
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Ashley Warren
-                                                            </a>
-                                                            <span class="text-sm"> Yeni bir <a href="#" class="text-primary">ders notu</a> ekledi.</span>
-                                                        </div>
-                                                        <div class="small text-muted">
-                                                            <span class="box fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="box fa fa-clock-o"> 15:58</span>
-                                                        </div>
-                                                        </div>
-                                                        <p class="no-mb">
-                                                        <h4 class="strong title"> 
-                                                          <a href="#" class="text-dark fa fa-file-o">
-                                                           Title of the Lecture Note - Algorithms
-                                                          </a>
-                                                        </h4>
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                        </p>
-                                                    
-                                                    
-                                                    
-                                            </div>
-                            </div>
-                            <!-- /Panel body -->
-
-                            <!-- Panel footer -->
-                            <div class="panel-footer ">
-                                <span class="box text-sm">8.Yarıyıl</span>
-                                <span class="box">|</span>
-                                <span class="box text-sm">Yapay Zeka ve Uzman Sistemleri</span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-download"> 12</a> 
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-comments"> 20</a>
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a  class="text-dark fa fa-thumbs-up"> 142</a>
-                                </span>
-                               <span class="box">|</span>
-                               <span class="box fa fa-paperclip text-dark "> 165 KB</span>
-                             </div>
-                             <!-- /Panel footer -->
-                        </div>
-                        <!--/ PANEL: Lecture Note Post -->                           
-                     </div>
-             
-           <div class="col-xs-12 col-sm-12 col-md-6">
-                        <!-- PANEL: Lecture Note Post -->
-                        <div class="panel panel-activities">
-                            <!-- Panel heading -->
-                            <div class="panel-heading">
-                                <!-- Panel title -->
-                                <div class="panel-title">
-                                  <a href="#">
-                                    <i class="icon fa fa-fw fa-eye"></i>
-                                  </a>
-                                </div>
-                                <!-- /Panel title -->
-
-                                <!-- Panel controls -->
-                                <div class="panel-controls">
-                                    <div class="panel-buttons">
-                                        <div class="dropdown">
-                                            <a class="btn-panel-control icon fa fa-angle-down dropdown-toggle" 
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                              <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                              <li><a href="#">Gizlilik</a></li>
-                                              <li><a href="#">Sil</a></li>
-                                              <li class="divider"></li>
-                                              <li><a href="#">Paylaş</a> </li>
-                                              <li><a href="#">E-Posta olarak Gönder</a></li> 
-                                              <li><a href="#">Düzelt</a></li>
-                                           </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Panel controls -->
-
-                            </div>
-                            <!-- /Panel heading -->
-
-                            <!-- Panel body -->
-                            <div class="panel-body">
-                              <!-- TABLE: Pending -->
-                                            <div class="post no-mb">
-                                                        <div class="clearfix">
-                                                            <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                            <img src="/noteoverflow/assets/caspero/avatar-deborah-young.jpg" alt="Deborah Young">
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Deborah Young
-                                                            </a>
-                                                            <span class="text-sm"> Yeni bir <a href="#" class="text-primary">ders notu</a> ekledi.</span>
-                                                        </div>
-                                                        <div class="small text-muted">
-                                                            <span class="box fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="box fa fa-clock-o"> 15:58</span>
-                                                        </div>
-                                                        </div>
-                                                        <p class="no-mb">
-                                                        <h4 class="strong title"> 
-                                                          <a href="#" class="text-dark fa fa-file-o">
-                                                           Title of the Lecture Note - Algorithms
-                                                          </a>
-                                                        </h4>
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                        </p>
-                                                    
-                                                    
-                                                    
-                                            </div>
-                            </div>
-                            <!-- /Panel body -->
-
-                            <!-- Panel footer -->
-                            <div class="panel-footer ">
-                                <span class="box text-sm">8.Yarıyıl</span>
-                                <span class="box">|</span>
-                                <span class="box text-sm">Yapay Zeka ve Uzman Sistemleri</span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-download"> 12</a> 
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-comments"> 20</a>
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a  class="text-dark fa fa-thumbs-up"> 142</a>
-                                </span>
-                               <span class="box">|</span>
-                               <span class="box fa fa-paperclip text-dark "> 165 KB</span>
-                             </div>
-                             <!-- /Panel footer -->
-                        </div>
-                        <!--/ PANEL: Lecture Note Post -->                           
-            </div>
-         
-           <div class="col-xs-12 col-sm-12 col-md-6">
-                        <!-- PANEL: Lecture Note Post -->
-                        <div class="panel panel-activities">
-                            <!-- Panel heading -->
-                            <div class="panel-heading">
-                                <!-- Panel title -->
-                                <div class="panel-title">
-                                  <a href="#">
-                                    <i class="icon fa fa-fw fa-eye"></i>
-                                  </a>
-                                </div>
-                                <!-- /Panel title -->
-
-                                <!-- Panel controls -->
-                                <div class="panel-controls">
-                                    <div class="panel-buttons">
-                                        <div class="dropdown">
-                                            <a class="btn-panel-control icon fa fa-angle-down dropdown-toggle" 
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                              <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                              <li><a href="#">Gizlilik</a></li>
-                                              <li><a href="#">Sil</a></li>
-                                              <li class="divider"></li>
-                                              <li><a href="#">Paylaş</a> </li>
-                                              <li><a href="#">E-Posta olarak Gönder</a></li> 
-                                              <li><a href="#">Düzelt</a></li>
-                                           </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Panel controls -->
-
-                            </div>
-                            <!-- /Panel heading -->
-
-                            <!-- Panel body -->
-                            <div class="panel-body">
-                              <!-- TABLE: Pending -->
-                                            <div class="post no-mb">
-                                                        <div class="clearfix">
-                                                            <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                            <img src="/noteoverflow/assets/caspero/avatar-louis-hawkins.jpg" alt="Louis Hawkins">
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Louis Hawkins
-                                                            </a>
-                                                            <span class="text-sm"> Yeni bir <a href="#" class="text-primary">ders notu</a> ekledi.</span>
-                                                        </div>
-                                                        <div class="small text-muted">
-                                                            <span class="box fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="box fa fa-clock-o"> 15:58</span>
-                                                        </div>
-                                                        </div>
-                                                        <p class="no-mb">
-                                                        <h4 class="strong title"> 
-                                                          <a href="#" class="text-dark fa fa-file-o">
-                                                           Title of the Lecture Note - Algorithms
-                                                          </a>
-                                                        </h4>
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                        </p>
-                                                    
-                                                    
-                                                    
-                                            </div>
-                            </div>
-                            <!-- /Panel body -->
-
-                            <!-- Panel footer -->
-                            <div class="panel-footer ">
-                                <span class="box text-sm">8.Yarıyıl</span>
-                                <span class="box">|</span>
-                                <span class="box text-sm">Yapay Zeka ve Uzman Sistemleri</span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-download"> 12</a> 
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-comments"> 20</a>
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a  class="text-dark fa fa-thumbs-up"> 142</a>
-                                </span>
-                               <span class="box">|</span>
-                               <span class="box fa fa-paperclip text-dark "> 165 KB</span>
-                             </div>
-                             <!-- /Panel footer -->
-                        </div>
-                        <!--/ PANEL: Lecture Note Post -->                           
-            </div>                                                                
-        
-           <div class="col-xs-12 col-sm-12 col-md-6">
-                        <!-- PANEL: Lecture Note Post -->
-                        <div class="panel panel-activities">
-                            <!-- Panel heading -->
-                            <div class="panel-heading">
-                                <!-- Panel title -->
-                                <div class="panel-title">
-                                  <a href="#">
-                                    <i class="icon fa fa-fw fa-eye"></i>
-                                  </a>
-                                </div>
-                                <!-- /Panel title -->
-
-                                <!-- Panel controls -->
-                                <div class="panel-controls">
-                                    <div class="panel-buttons">
-                                        <div class="dropdown">
-                                            <a class="btn-panel-control icon fa fa-angle-down dropdown-toggle" 
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
-                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                              <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                              <li><a href="#">Gizlilik</a></li>
-                                              <li><a href="#">Sil</a></li>
-                                              <li class="divider"></li>
-                                              <li><a href="#">Paylaş</a> </li>
-                                              <li><a href="#">E-Posta olarak Gönder</a></li> 
-                                              <li><a href="#">Düzelt</a></li>
-                                           </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Panel controls -->
-
-                            </div>
-                            <!-- /Panel heading -->
-
-                            <!-- Panel body -->
-                            <div class="panel-body">
-                              <!-- TABLE: Pending -->
-                                            <div class="post no-mb">
-                                                        <div class="clearfix">
-                                                            <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
-                                                            <a href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                            <img src="/noteoverflow/assets/caspero/avatar-christopher-tucker.jpg" alt="Christopher Tucker">
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="name">
-                                                            <a class="strong" href="<c:url context='${rootContext}' value='/user/profile.htm'/>">
-                                                                Christopher Tucker
-                                                            </a>
-                                                            <span class="text-sm"> Yeni bir <a href="#" class="text-primary">ders notu</a> ekledi.</span>
-                                                        </div>
-                                                        <div class="small text-muted">
-                                                            <span class="box fa fa-calendar"> 27 Şubat 2019,</span>
-                                                            <span class="box fa fa-clock-o"> 15:58</span>
-                                                        </div>
-                                                        </div>
-                                                        <p class="no-mb">
-                                                        <h4 class="strong title"> 
-                                                          <a href="#" class="text-dark fa fa-file-o">
-                                                           Title of the Lecture Note - Algorithms
-                                                          </a>
-                                                        </h4>
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                         Description goes here description goes here.
-                                                        </p>
-                                                    
-                                                    
-                                                    
-                                            </div>
-                            </div>
-                            <!-- /Panel body -->
-
-                            <!-- Panel footer -->
-                            <div class="panel-footer ">
-                                <span class="box text-sm">8.Yarıyıl</span>
-                                <span class="box">|</span>
-                                <span class="box text-sm">Yapay Zeka ve Uzman Sistemleri</span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-download"> 12</a> 
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a href="#" class="text-dark fa fa-comments"> 20</a>
-                                </span>
-                                <span class="box">|</span>
-                                <span class="box">
-                                <a  class="text-dark fa fa-thumbs-up"> 142</a>
-                                </span>
-                               <span class="box">|</span>
-                               <span class="box fa fa-paperclip text-dark "> 165 KB</span>
-                             </div>
-                             <!-- /Panel footer -->
-                        </div>
-                        <!--/ PANEL: Lecture Note Post -->                           
-            </div> 
-                                                                
-        </div>
-        <!--/ Elements Row -->                                                            
+    <!-- /PANEL: Site Visits Line Chart -->
+  </div>         
+</div>
+<!--/ Elements Row --> 
 </c:set>        
  
  <layout:caspero>

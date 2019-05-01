@@ -5,10 +5,16 @@
  */
 package com.noteoverflow.dao;
 
+import com.noteoverflow.models.Course;
+import java.util.List;
+
 /**
  *
  * @author trabdlkarim
  */
-public class CourseDAO {
+public interface CourseDAO {
+    public List<Course> getAllCourses();
+    public Course getCourseById(int id);
+    public Course getCourseByName(String name);
     
 }

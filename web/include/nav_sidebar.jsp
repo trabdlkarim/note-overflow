@@ -40,7 +40,7 @@
                         <a href="<c:url context='${rootContext}' value='/user/messages.htm'/>" class="has-badge">
                             <i class="icon icon-inline fa fa-envelope-o"></i>
                             Mesajlarım
-                            <span class="badge badge-notification badge-danger">3</span>
+                            <span class="badge badge-notification badge-danger">0</span>
                         </a>
                     </li>
                     <li>
@@ -73,7 +73,7 @@
                 <li  class="nav-sidebar-li">
                     <a href="<c:url context='${rootContext}' value='/user/feed.htm'/>">
                         <i class="icon icon-inline  fa fa-home"></i> 
-                        <span class="title"> Dashboard</span>
+                        <span class="title"> Ana Sayfa</span>
                     </a>
                 </li>
                 <li class="nav-sidebar-item">
@@ -82,42 +82,16 @@
                         <span class="title">Yeni Not Ekle</span>
                     </a>
                 </li>
-                <li class="sub">
-                    <a href="#" class="sub-toggle">
+                <li>
+                    <a class="nav-sidebar-item" href="<c:url context='${rootContext}' value='/user/lecture_notes.htm'/>" >
                         <i class="icon icon-inline fa fa-tasks"></i> 
                         <span class="title">Ders Notlarım</span>
                     </a>
-                    <ul class="sub-menu" data-menu-title="Blog">
-                        <li>
-                            <a href="<c:url context='${rootContext}' value='/user/lecture_notes.htm?privacy=public'/>">
-                                <i class="icon icon-inline fa fa-circle-thin"></i> 
-                              <span class="title">Açık Notlar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<c:url context='${rootContext}' value='/user/lecture_notes.htm?privacy=shared'/>">
-                                <i class="icon icon-inline fa fa-circle-thin"></i> 
-                                <span class="title">Ortak Notlar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<c:url context='${rootContext}' value='/user/lecture_notes.htm?privacy=private'/>">
-                                <i class="icon icon-inline fa fa-circle-thin"></i> 
-                                <span class="title">Gizli Notlar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<c:url context='${rootContext}' value='/user/lecture_notes.htm'/>">
-                                <i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span class="title">Tüm Notlar</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                  <li>
                     <a href="<c:url context='${rootContext}' value='/user/messages.htm'/>">
-                        <i class="icon icon-inline fa fa-plus-circle"></i> 
+                        <i class="icon icon-inline fa fa-envelope"></i> 
                         <span class="title">Yeni Sohbet</span>
                     </a>
                 </li>
@@ -126,23 +100,6 @@
                         <i class="icon icon-inline fa fa-group"></i> 
                         <span class="title">Bağıntılarım</span>
                     </a>
-                </li>
-
-                <li class="sub">
-                    <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-diamond"></i> <span class="title">Tercihlerim</span>
-                    </a>
-                    <ul class="sub-menu collapse" data-menu-title="Tercihler">
-                        <li><a href="http://vtdes.ru/demo/caspero/elements.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">General</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-components.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Components</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-typography.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Typography</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-panels.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Panels</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-buttons.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Buttons</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-card-boxes.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Card Boxes</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-calendar.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Calendar</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-tree.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Tree</span></a></li>
-                        <li><a href="http://vtdes.ru/demo/caspero/elements-carousels.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Carousels</span></a></li>
-                    </ul>
                 </li>
                 <c:if  test="${isUserAnAdministrator}">
                 <li>
@@ -160,7 +117,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url context='${rootContext}' value='/pages/stats.htm'/>">
+                    <a href="<c:url context='${rootContext}' value='/user/stats.htm'/>">
                         <i class="icon icon-inline fa fa-line-chart"></i> 
                         <span class="title">İstatistik</span>
                     </a>
@@ -168,7 +125,7 @@
                
                 <li class="sub">
                     <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-stack-exchange"></i> <span class="title">Note Overflow</span>
+                        <i class="icon icon-inline fa fa-stack-exchange"></i> <span class="title">Statik Sayfalar</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Linkler">
                         <li>

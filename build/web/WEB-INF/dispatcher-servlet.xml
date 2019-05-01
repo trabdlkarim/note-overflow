@@ -23,5 +23,18 @@
           p:prefix="/WEB-INF/views/"
           p:suffix=".jsp"/>
 
+     <!-- Configure the multipart resolver -->
+    <bean id="multipartResolver" 
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="51200000"/>
+    </bean>
+     <!-- Access resource bundles with the specified basename -->
+    <bean id="messageSource" 
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/res/messages" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="cacheSeconds" value="1"/>
+    </bean>
    
 </beans>

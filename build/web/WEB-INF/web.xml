@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <display-name>Note Overflow</display-name>
+  <display-name>Note Overflow</display-name>
   <welcome-file-list>
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>home.jsp</welcome-file>
     <welcome-file>redirect.jsp</welcome-file>
   </welcome-file-list>
+   <context-param>
+        <param-name>lecNoteUploadLocation</param-name>
+        <param-value>
+        /home/trabdlkarim/Devstudio/Java/NetBeans/NoteOverflow/web/cdn/media/dbms/notes
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>avatarUploadLocation</param-name>
+        <param-value>
+         /home/trabdlkarim/Devstudio/Java/NetBeans/NoteOverflow/web/cdn/media/dbms/img/avatar
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>coverUploadLocation</param-name>
+        <param-value>
+         /home/trabdlkarim/Devstudio/Java/NetBeans/NoteOverflow/web/cdn/media/dbms/img/cover
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>tempFileUploadLocation</param-name>
+        <param-value>
+         /home/trabdlkarim/Devstudio/Java/NetBeans/NoteOverflow/web/cdn/media/dbms/temp
+        </param-value>
+    </context-param>
    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -21,6 +45,24 @@
     <session-config>
         <session-timeout >60</session-timeout>
     </session-config>
+    
+    <!--Character Encoding Filter-->
+    <filter>  
+        <filter-name>encodingFilter</filter-name>  
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+        <init-param>  
+            <param-name>encoding</param-name>  
+            <param-value>UTF-8</param-value>  
+        </init-param>  
+        <init-param>  
+           <param-name>forceEncoding</param-name>  
+           <param-value>true</param-value>  
+        </init-param>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping> 
   
     <!--Spring Security-->
     <context-param>
@@ -31,13 +73,14 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
- 
-    <filter-mapping>
+     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- Error Pages Location-->
     <error-page>
-    <error-code>404</error-code>
-    <location>/WEB-INF/views/errors/404.jsp</location>
-</error-page>
+       <error-code>404</error-code>
+       <location>/WEB-INF/views/errors/404.jsp</location>
+    </error-page>
 </web-app>

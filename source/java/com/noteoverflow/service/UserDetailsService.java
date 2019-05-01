@@ -20,5 +20,7 @@ public interface UserDetailsService {
     
     public int getFriendsCount(int id);
 
-    public List<UserDetails> getFriendsList(int id);   
+    public List<UserDetails> getFriendsList(int id);
+    
+     public UserDetails getUserDetailsById(int userId);
 }

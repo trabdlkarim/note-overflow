@@ -70,13 +70,11 @@
                 </li>
                 
                 <li class="dropdown">
-
                     <a href="<c:url context='${rootContext}' value='/user/notifications.htm'/>" class="dropdown-toggle no-caret nav-notification" data-toggle="dropdown">
                         <i class="icon icon-inline fa fa-bell fa-fw"></i>
                         <span class="hidden-sm hidden-md hidden-lg">Bildirimler</span>
-                        <span class="badge badge-danger badge-notification">7</span>
+                        <span class="badge badge-danger badge-notification">0</span>
                     </a>
-
                     <ul class="dropdown-menu dropdown-menu-right navbar-notifications-dropdown">
 
                        <li class="title">Yeni Bildirimler</li>
@@ -127,21 +125,16 @@
                         </li>
 
                     </ul>
-
                 </li>
                 
                 <li class="dropdown">
-
                     <a href="<c:url context='${rootContext}' value='/user/messages.htm'/>" class="dropdown-toggle no-caret nav-notification" data-toggle="dropdown">
                         <i class="icon icon-inline fa fa-envelope-open"></i>
                         <span class="hidden-sm hidden-md hidden-lg">Mesajlar</span>
-                         <span class="badge badge-danger badge-notification">10</span>
+                         <span class="badge badge-danger badge-notification">0</span>
                     </a>
-
                     <ul class="dropdown-menu dropdown-menu-right navbar-notifications-dropdown">
-
                         <li class="title">Yeni Mesajlar</li>
-
                         <li>
                             <a href="#" class="notification">
                                 <div class="avatar avatar-lg image">

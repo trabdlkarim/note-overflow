@@ -19,4 +19,5 @@ public interface UserDetailsDAO {
     public List<UserDetails> getFriendsList(int id);
     
     public UserDetails getUserDetailsByUsername(String username);
+    public UserDetails getUserDetailsById(int userId);    
 }

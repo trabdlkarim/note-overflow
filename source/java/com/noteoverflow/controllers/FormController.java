@@ -5,15 +5,23 @@
  */
 package com.noteoverflow.controllers;
 
+import com.noteoverflow.models.Course;
+import com.noteoverflow.models.parser.AddLectureNoteFormParser;
 import com.noteoverflow.models.parser.ContactUsFormParser;
 import com.noteoverflow.models.parser.ForgotPasswordFormParser;
 import com.noteoverflow.models.parser.LoginFormParser;
 import com.noteoverflow.models.parser.RegisterFormParser;
+import com.noteoverflow.service.CourseDetailsService;
 import com.noteoverflow.service.UserDetailsService;
 import java.security.Principal;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,8 +35,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class FormController {
         
         @Autowired
-	private UserDetailsService userDetailsService; 
+	private UserDetailsService userDetailsService;
+        
+        @Autowired
+	private CourseDetailsService courseDetailsService;
+        
         private String username;
+       
         
         @RequestMapping(value="/login")
 	public ModelAndView renderLoginView() {
@@ -64,5 +77,17 @@ public class FormController {
           model.addAttribute("pageName",title);   
           return "forms/contact";
 	 }
-        
+        @GetMapping(value="/user/add_new_note")
+	public String renderAddNewNoteView(ModelMap model,Principal principal) {
+            AddLectureNoteFormParser parser = new AddLectureNoteFormParser();
+            List<Course> courses = courseDetailsService.getAllCourses();
+            username = principal.getName();
+            model.addAttribute("currentUser",
+                    userDetailsService.getUserDetailsByEmail(username));
+            model.addAttribute("courses",courses);
+            model.addAttribute("pageName","Yeni Ders Notu Ekle ");
+            
+            model.addAttribute("addLecNoteFormParser",parser);
+	    return "forms/new_note";
+	   }
 }

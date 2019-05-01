@@ -58,16 +58,7 @@ public class StaticPagesController {
 	}
     
         
-    @RequestMapping(value="/pages/stats", method = RequestMethod.GET)
-    public String renderStatsView(ModelMap model,Principal principal) {
-        username = principal.getName();
-        model.addAttribute("currentUser",
-                userDetailsService.getUserDetailsByEmail(username));  
-        String title = "İstatistik";
-        model.addAttribute("pageName",title);
-        
-        return "static/stats";
-	}
+   
     @RequestMapping(value="pages/links")
     public String renderResourcesView(ModelMap model,Principal principal){
       String title = "Linkler";

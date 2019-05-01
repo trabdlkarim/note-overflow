@@ -12,7 +12,7 @@
         <security:intercept-url pattern="/user/**" 
          access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_SUPERVISOR')"/>
         <security:intercept-url pattern="/admin/**" 
-         access="hasRole('ROLE_ADMIN','ROLE_SUPERVISOR')"/>
+         access="hasAnyRole('ROLE_ADMIN','ROLE_SUPERVISOR')"/>
         <security:intercept-url pattern="/error/**" access="permitAll"/>
         <security:intercept-url pattern="/do/**" access="permitAll"/>        
         <security:intercept-url pattern="/login*" access="permitAll"/>      
@@ -24,7 +24,7 @@
         
         <security:intercept-url pattern="/*" access="isAuthenticated()"/>
         
-        <security:access-denied-handler error-page="/error/access_denied.htm"/>
+        <security:access-denied-handler error-page="/error/403.htm"/>
         
         <security:form-login 
             login-page="/login.htm" 
