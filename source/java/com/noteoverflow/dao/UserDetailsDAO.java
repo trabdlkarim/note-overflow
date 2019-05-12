@@ -5,7 +5,9 @@
  */
 package com.noteoverflow.dao;
 
+import com.noteoverflow.models.FriendRequest;
 import com.noteoverflow.models.UserDetails;
+import com.noteoverflow.models.parser.RegisterFormParser;
 import java.util.List;
 
 /**
@@ -19,5 +21,14 @@ public interface UserDetailsDAO {
     public List<UserDetails> getFriendsList(int id);
     
     public UserDetails getUserDetailsByUsername(String username);
-    public UserDetails getUserDetailsById(int userId);    
+    public UserDetails getUserDetailsById(int userId);
+    public void registerNewUser(RegisterFormParser parser);
+    public List<UserDetails> search(String regex);
+    public void sendFiendRequest(FriendRequest request);
+    public void acceptFiendRequest(FriendRequest request);    
+    public void cancelFriendRequest(FriendRequest request);
+    public List<UserDetails> getUserFriendRequests(int userId);
+    public List<UserDetails> getUserSentRequests(int userId);
+    public void unfriendUser(int userId, int friendId);
+    
 }

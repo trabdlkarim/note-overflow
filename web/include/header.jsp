@@ -37,6 +37,12 @@
           <div class="col-12 my-auto">
             <div class="masthead-content text-white py-5 py-md-0">
               <div class="text-center">
-                  <a href="welcome.htm"><img class="rounded-circle" src="${appAssets}/img/comu.jpg" height="100" width="100" alt="ÇOMÜ"/> </a> 
+                  <a href="welcome.htm">
+                     <img class="rounded-circle" src="${appAssets}/img/comu.jpg" height="100" width="100" alt="ÇOMÜ"/> </a> 
               </div>
-              <h1 class="mb-3">Note Overflow</h1>
+              <div class="mb-3 text-center  panel-title">
+                <a href="welcome.htm">
+                 <img src="${appAssets}/img/logo_sm.png" alt="logo_sm.png"/>
+                 <img src="${appAssets}/img/logo.png" alt="logo.png"/>
+                </a>
+              </div>

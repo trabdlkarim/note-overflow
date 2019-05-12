@@ -52,21 +52,64 @@
                 <!-- Buttons -->
                 <li>
                     <!-- Search Form -->
-                    <form class="navbar-search-form">
+                    <form class="navbar-search-form" id="top-search-form" name="top-search-form" method="get" action="${rootContext}/user/search.htm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Ara ...">
+                            <input type="text" id="top-search-input" name="q" class="form-control" placeholder="Ara ..." required="true">
                         </div>
                     </form>
                     <!-- /Search Form -->
 
-                    <a href="#" class="navbar-search-toggle hidden-xs">
+                    <a class="navbar-search-toggle hidden-xs">
                         <i class="icon icon-inline fa fa-search"></i> <span class="hidden-sm hidden-md hidden-lg">Ara</span>
                     </a>
                 </li>
                 
-                <li> <a href="add_new_note.htm"><i class="fa fa-plus-square"></i>
-                     <span class="hidden-sm hidden-md hidden-lg">Yeni Not</span>
+                <li class="dropdown">
+                    <a href="<c:url context='${rootContext}' value='/user/friends/requests.htm'/>" class="dropdown-toggle no-caret nav-notification" data-toggle="dropdown">
+                        <i class="icon icon-inline fa fa-group fa-fw"></i>
+                        <span class="hidden-sm hidden-md hidden-lg">Arkadaşlık İstekleri</span>
+                        <span class="badge badge-danger badge-notification">${friendRequestCount}</span>
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-right navbar-notifications-dropdown">
+
+                        <li class="title">
+                            <a class="title" href="<c:url context='${rootContext}' value='/user/friends/requests.htm'/>">
+                                Arkadaşlık İstekleri
+                            </a>
+                        </li>
+                       <c:choose>
+                        <c:when test="${friendRequests!=null && !friendRequests.isEmpty()}">
+                        <c:forEach var="user" items="${friendRequests}">
+                        <li>
+                            <a  class="notification">
+                                <div class="avatar avatar-lg image">
+                                    <img src="<c:url context='${avatarPath}' value='/${user.avatar}'/>" alt="${user.name} ${user.surname}">
+                                </div>
+                                <div class="user-name text-primary strong"> ${user.name} ${user.surname}</div>
+                                <p class="text">
+                                    Bu kullanıcı sizinle arkadaş olmak istiyor. Arkadaşlık isteğini kabul eder misin ?
+                                </p>
+                                <form name="topNavFriendRequestForm" class="form-inline form-row date" method="post">
+                                    <div class="form-group btn-group-sm ">
+                                        <input type="hidden" name="topNavFriendId" value="${user.userID}"/>
+                                        <input class="form-control btn btn-sm btn-danger" type="submit" name="topNavCancelFriendRequest" value="İptal"/>
+                                        <input class="form-control btn btn-sm btn-primary" type="submit" name="topNavConfirmFriendRequest" value="Onayla"/>
+                                        
+                                    </div>
+                                </form>
+                               
+                            </a>
+                        </li>
+                        </c:forEach>
+                        <li>
+                            <a href="<c:url context='${rootContext}' value='/user/friends/requests.htm'/>" class="btn btn-default btn-block btn-no-border">Tümünü Göster</a>
+                        </li>
+                       </c:when>
+                        <c:otherwise>
+                            <li><a class="text"> Yeni bir istek yoktur. </a><li>
+                        </c:otherwise>
+                        </c:choose>
+                    </ul>
                 </li>
                 
                 <li class="dropdown">

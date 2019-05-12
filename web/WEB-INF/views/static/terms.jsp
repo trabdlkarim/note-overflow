@@ -4,7 +4,7 @@
 <%@taglib tagdir="/WEB-INF/tags/layouts" prefix="layout" %>
 
 <c:set var="bodyContent">
-    <p>Çalişıyor</p>
+    <p><h1>Sistem Kullanım Şartları</h1></p>
 </c:set>
  
  <layout:caspero>

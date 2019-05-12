@@ -64,7 +64,7 @@
                                     <label>Beni Hatırla</label>
                                 </div>
                                 <div class="input-group-append form-group">
-                                    <form:button  type="submit" id="loginSubmit" class="btn btn-lg btn-success btn-block">
+                                    <form:button  type="submit" id="loginSubmit" class="btn btn-lg btn-success btn-block rounded">
                                         GİRİŞ YAPIN
                                     </form:button>
                                 </div>                           

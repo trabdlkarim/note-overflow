@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.noteoverflow.models;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-/**
- *
- * @author trabdlkarim
- */
+
 public class Post {
     private String noteFileName;
     private String ownerAvatar;
@@ -26,12 +20,12 @@ public class Post {
     private String postId;
     private String privacy;
     private int noteId;
-
+    private CommonsMultipartFile noteFile;
     
     public Post(){}
     public Post(LectureNote note, UserDetails owner, Course course){
         
-        this.postId = RandomStringUtils.randomAlphanumeric(48)+note.getLecNoteID();
+     this.postId = RandomStringUtils.randomAlphanumeric(48)+note.getLecNoteID();
         this.postId = this.postId.toUpperCase();
         this.noteFileName = note.getLecNoteFile();
         this.title = note.getLecNoteTitle();
@@ -164,6 +158,14 @@ public class Post {
 
     public void setNoteId(int noteId) {
         this.noteId = noteId;
+    }
+
+    public CommonsMultipartFile getNoteFile() {
+        return noteFile;
+    }
+
+    public void setNoteFile(CommonsMultipartFile noteFile) {
+        this.noteFile = noteFile;
     }
     
    

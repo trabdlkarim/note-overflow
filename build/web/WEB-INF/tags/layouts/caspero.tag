@@ -67,6 +67,8 @@
    <script src="/noteoverflow/assets/caspero/fullcalendar.min.js"></script>
    <script src="/noteoverflow/assets/caspero/general.js"></script>
    <script src="/noteoverflow/assets/caspero/demo.js"></script>
+   <script src="/noteoverflow/assets/js/search.js"></script>
+
    <!-- /SCRIPTS -->
   </body>
 </html>

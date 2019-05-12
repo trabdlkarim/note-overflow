@@ -5,6 +5,7 @@
  */
 package com.noteoverflow.service;
 
+import com.noteoverflow.models.Count;
 import com.noteoverflow.models.LectureNote;
 import com.noteoverflow.models.UserDetails;
 import java.util.List;
@@ -29,4 +30,10 @@ public interface LectureNoteDetailsService {
     public void shareLectureNote(List <UserDetails> friends, int noteID);
     public void updateSharedNotesTable();
     public void deleteUserFromSharedNotesTable(int userID,int noteID);
+    public void deleteNotesFromSharedNotesTable(int noteID);
+    public void updateLectureNotePrivacy(int noteId,String privacy);
+    public Count getSharedNoteUsersCount(int noteId);
+    public List<UserDetails> getSharedNoteUsersList(int noteId);
+    public List<LectureNote> getRelatedLectureNotes(int courseId, int noteId,int limit,int userId);
+    public List<LectureNote> searchLectureNote(String pattern,int userID);
 }

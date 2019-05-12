@@ -249,7 +249,7 @@
                         <div class="panel-footer ">
                             <a href="<c:url context='${rootContext}' value='/user/friends.htm'/>"><i class="icon fa fa-arrow-circle-o-down"></i> Tüm Bağıntılarım Göster</a>
                         </div>
-                            <!-- /Panel footer -->
+                      <!-- /Panel footer -->
                 </div>
     <!-- /PANEL: Users -->
     <!-- PANEL: Current Activities -->

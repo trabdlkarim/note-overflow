@@ -18,7 +18,7 @@
                         <!-- Panel Controls -->
                         <div class="panel-controls">
                             <ul class="panel-buttons">
-                                <li><a href="http://vtdes.ru/demo/caspero/#" class="btn-panel-control icon fa fa-plus"></a></li>
+                                <li><a href="#" class="btn-panel-control icon fa fa-plus"></a></li>
                             </ul>
                         </div>
                         <!-- /Panel Controls -->
@@ -55,9 +55,12 @@
                                     <td>
                                         <!-- User Buttons -->
                                         <ul class="inline-icons">
-                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
+                                            <li>
+                                                 <form name="cancelFriendRquestForm${user.userID}" class="form-inline" method="post">
+                                                    <input type="hidden" name="cancelFriendRequest" value="${user.userID}"/>
+                                                    <button type="submit" class="btn-danger rounded"> Arkadaşlarımdan Çıkar</button>
+                                                </form>
+                                            </li>
                                         </ul>
                                         <!-- /User Buttons -->
                                     </td>

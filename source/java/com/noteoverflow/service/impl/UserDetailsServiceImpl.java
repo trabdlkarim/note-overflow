@@ -6,7 +6,9 @@
 package com.noteoverflow.service.impl;
 
 import com.noteoverflow.dao.UserDetailsDAO;
+import com.noteoverflow.models.FriendRequest;
 import com.noteoverflow.models.UserDetails;
+import com.noteoverflow.models.parser.RegisterFormParser;
 import com.noteoverflow.service.UserDetailsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,46 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Override
     public UserDetails getUserDetailsById(int userId) {
        return userDetailsDAO.getUserDetailsById(userId);
+    }
+
+    @Override
+    public void registerNewUser(RegisterFormParser parser) {
+        this.userDetailsDAO.registerNewUser(parser);
+    }
+
+    @Override
+    public List<UserDetails> searchUser(String pattern) {
+        return this.userDetailsDAO.search(pattern);
+    }
+
+    @Override
+    public void sendFiendRequest(FriendRequest request) {
+        this.userDetailsDAO.sendFiendRequest(request);
+    }
+
+    @Override
+    public void acceptFiendRequest(FriendRequest request) {
+        this.userDetailsDAO.acceptFiendRequest(request);
+    }
+
+    @Override
+    public List<UserDetails> getUserFriendRequests(int userId) {
+       return  this.userDetailsDAO.getUserFriendRequests(userId);
+    }
+    
+    @Override
+    public List<UserDetails> getUserSentRequests(int userId) {
+       return  this.userDetailsDAO.getUserSentRequests(userId);
+    }
+
+    @Override
+    public void cancelFriendRequest(FriendRequest request) {
+        this.userDetailsDAO.cancelFriendRequest(request);
+    }
+
+    @Override
+    public void unfriendUser(int userId, int friendId) {
+        this.userDetailsDAO.unfriendUser(userId, friendId);
     }
     
 }

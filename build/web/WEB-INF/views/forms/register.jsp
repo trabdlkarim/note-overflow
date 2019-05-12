@@ -16,35 +16,137 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@taglib uri = "http://www.springframework.org/tags/form" prefix="form" %>
 
-<layout:csoon>
-              <form:form id="signup-form" name="signup-form" modelAttribute="registerFormParser"  action="user/feed.htm" method="post">
-                  <div class="form-group">   
-                    <div class="input-group input-group-newsletter">
-                      <form:input type="text" path="name" id="signup-name" class="form-control" placeholder="Ad" aria-label="Adınız girin" aria-describedby="basic-addon"/>
-                      <form:input type="text" path="surname" id="signup-surname" class="form-control" placeholder="Soyad" aria-label="Soyadınız girin" aria-describedby="basic-addon"/>
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>${systemName} - ${pageName}</title>
+  <link rel="shortcut icon" href="${appAssets}/img/logo_sm.png">
+  <!-- Custom fonts for this template-->
+  <link href="${appAssets}/signup/all.css" rel="stylesheet" type="text/css">
+  <link href="${appAssets}/signup/css.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="${appAssets}/signup/sb-admin-2.css" rel="stylesheet">
+
+</head>
+<body  style="background:#cd9557">
+    <header class="header">
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> </a>
+    </div>
+  </div>
+ </nav>
+ </header>
+    <div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row" style="background-color:#002e66;">
+          <div class="col-lg-5 bg-register-image">
+          </div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                  <div class="text-center mb-3">
+                  <a href="welcome.htm">
+                   <img class="rounded-circle" src="${appAssets}/img/comu.jpg" height="100" width="100" alt="ÇOMÜ"/> 
+                  </a> 
+                   </div>
+                  <div class="text-center mb-3 panel-title">
+                    <a href="welcome.htm">
+                     <img src="<c:url context='${appAssets}' value='/img/logo_sm.png'/>" alt="logo_sm.png"/>
+                     <img src="<c:url context='${appAssets}' value='/img/logo.png'/>" alt="logo.png"/>
+                    </a>
+                  </div>
+                  
+                  <h1 class="mb-4 text-capitalize text-white" style="font-family:Merriweather;font-weight:700">
+                      Bir Hesap Oluşturunuz 
+                  </h1>
+              </div>
+               <form:form class="user" modelAttribute="registerFormParser" method="post">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <form:input type="text" class="form-control form-control-user" path="name" placeholder="*Adınız" required="true"/>
+                    <small class="form-text strong text-muted">
+                     <form:errors path="name" class="text-danger" />
+                     </small> 
+                  </div>
+                  <div class="col-sm-6">
+                    <form:input type="text" class="form-control form-control-user" path="surname" placeholder="*Soyadınız" required="true"/>
+                    <small class="form-text strong text-muted">
+                     <form:errors path="surname" class="text-danger" />
+                     </small> 
+                  </div>
+                </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <form:input type="text" class="form-control form-control-user" path="studentNo" placeholder="*Öğrenci No" required="true"/>
+                      <small class="form-text strong text-muted">
+                      <form:errors path="studentNo" class="text-danger" />
+                     </small> 
+                    </div>
+                    <div class="col-sm-6">
+                     <form:input type="tel" class="form-control form-control-user" path="phone" placeholder="*Telefon" required="true"/>
+                     <small class="form-text strong text-muted">
+                     <form:errors path="phone" class="text-danger" />
+                     </small> 
                     </div>
                   </div>
-                  <div class="form-group ">                  
-                  <form:input type="email" path="email" id="signup-email" class="form-control" placeholder="E-posta" aria-label="Epostanız girin" aria-describedby="basic-addon"/>
+                <div class="form-group">
+                  <form:input type="email" class="form-control form-control-user" path="email" placeholder="*E-Postanız" required="true"/>
+                  <small class="form-text strong text-muted">
+                     <form:errors path="email" class="text-danger" />
+                     </small> 
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <form:input type="password" class="form-control form-control-user" path="password" placeholder="*Şifre" required="true"/>
+                    <small class="form-text strong text-muted">
+                     <form:errors path="password" class="text-danger" />
+                    </small> 
                   </div>
-                  <div class="form-group">                  
-                  <form:input type="text" path="studentNo" id="signup-stdNo" class="form-control" placeholder="Öğrenci Numara" aria-label="Öğrenci numaranız girin" aria-describedby="basic-addon"/>
+                  <div class="col-sm-6">
+                    <form:input type="password" class="form-control form-control-user" path="repeatPassword" placeholder="*Tekrar Şifre" required="true"/>
+                    <small class="form-text strong text-muted">
+                     <form:errors path="repeatPassword" class="text-danger" />
+                     </small> 
                   </div>
-                  <div class="form-group">                  
-                  <form:input type="password" path="password" id="signup-password" class="form-control" placeholder="Şifre" aria-label="Şifreniz Girin" aria-describedby="basic-addon"/>
-                  </div>
-                  <div class="form-group">
-                  <form:input type="password" path="passwordConfirmation" id="signup-retype-password" class="form-control" placeholder="Şifre Onayla" aria-label="Şifreniz tekrar girin" aria-describedby="basic-addon"/>
-                  </div>
-                  <div class="input-group-append form-group">
-                    <form:button  class="btn btn-lg btn-success btn-block" id="registerSubmit" type="submit"> HESAP OLUŞTURUN </form:button>
-                  </div>
+                </div>
+                <button  type="submit" class="btn btn-success btn-user btn-block strong">
+                     Hesap Oluşturunuz
+                </button>
               </form:form>
-                
-              <div class="input-group-append form-group">
-               <button  class="btn btn-success btn-lg  btn-block" type="button" 
-                onclick="location.reload();location.href='login.htm'"> 
-                GİRİŞ YAPIN 
-               </button>
+              <hr>
+              <div class="text-center">
+                <a class="strong text-white" href="<c:url context='${rootContext}' value='/reset_password.htm'/>">Şifre Unuttunuz mu ?</a>
               </div>
-</layout:csoon>
+              <div class="text-center ">
+                  <a class="strong text-white" href="<c:url context='${rootContext}' value='/login.htm'/>">Bir Hesabınız var mı? Giriş Yapınız!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="${appAssets}/signup/jquery_002.js"></script>
+  <script src="${appAssets}/signup/bootstrap.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="${appAssets}/signup/jquery.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="${appAssets}/signup/sb-admin-2.js"></script>
+   </body>
+</html>

@@ -11,21 +11,21 @@ package com.noteoverflow.models.parser;
  */
 public class RegisterFormParser {
  
-    private String username;
-    private String name;
     private String surname;
-    private String grade;
+    private String name;
+    private String phone;
     private String studentNo;
     private String email;
     private String password;
-    private String passwordConfirmation;
+    private String repeatPassword;
+ 
     
-    public String getUsername() {
-        return username;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setSurname(String username) {
+        this.surname = username;
     }
 
     public String getName() {
@@ -36,25 +36,9 @@ public class RegisterFormParser {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getStudentNo() {
-        return studentNo;
-    }
+   public String getStudentNo(){
+    return this.studentNo;
+   }
 
     public void setStudentNo(String studentNo) {
         this.studentNo = studentNo;
@@ -76,14 +60,22 @@ public class RegisterFormParser {
         this.password = password;
     }
 
-    public String getPasswordConfirmation() {
-        return passwordConfirmation;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPasswordConfirmation(String passwordConfirmation) {
-        this.passwordConfirmation = passwordConfirmation;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-    
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
+
     
     
 }

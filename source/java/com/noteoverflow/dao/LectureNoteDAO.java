@@ -5,6 +5,7 @@
  */
 package com.noteoverflow.dao;
 
+import com.noteoverflow.models.Count;
 import com.noteoverflow.models.LectureNote;
 import com.noteoverflow.models.UserDetails;
 import java.util.List;
@@ -22,11 +23,19 @@ public interface LectureNoteDAO {
     public List<LectureNote> getAllPublicNotes();
     public List<LectureNote> generateUserFeed(int userID);
     public LectureNote getLectureNoteById(int noteId);
+    public List<UserDetails> getSharedNoteUsersList(int noteId);
+    public List<LectureNote> getRelatedLectureNotes(int courseId, int noteId,int limit,int userId);
     public void addNewLectureNote(LectureNote note);
+    
     public void updateLectureNote(int oldNoteID, LectureNote newNote);
+    public void updateLectureNotePrivacy(int noteId,String privacy);
+    public Count  getSharedNoteUsersCount(int noteId);
     public void deleteLectureNote(int noteID );
     public void shareLectureNote(List <UserDetails> friends, int noteID);
+    
     public void updateSharedNotesTable();
+   
     public void deleteUserFromSharedNotesTable(int userID,int noteID);
-
+    public void deleteNotesFromSharedNotesTable(int noteID);
+    public List<LectureNote> search(String regex,int userID); 
 }

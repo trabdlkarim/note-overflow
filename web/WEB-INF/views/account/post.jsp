@@ -24,17 +24,12 @@
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></a>
                                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                                 <li><a href="#"><i class="icon fa fa-arrow-circle-o-right"></i> Show all activities</a></li>
-                                                 <li><a href="#">Düzelt</a>
-                                                                     </li>
-                                                                     <li><a href="#">Gizlilik</a>
-                                                                     </li>
-                                                                     <li><a href="#">Sil</a>
-                                                                     </li>
-                                                                      <li class="divider"></li>
-                                                                      <li><a href="#">Paylaş</a>
-                                                                      </li>
-                                                                      <li><a href="#">E-Posta olarak Gönder</a>
-                                                                      </li>  
+                                                <li><a href="#">Düzelt</a></li>
+                                                <li><a href="#">Gizlilik</a></li>
+                                                <li><a href="#">Sil</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Paylaş</a></li>
+                                                <li><a href="#">E-Posta olarak Gönder</a></li> 
                                             </ul>
                                         </div>
                                     </div>
@@ -48,7 +43,7 @@
                             <div class="panel-body">
                            
                                             <div class="post no-mb">
-                                                        <div class="clearfix">
+                                                        <div class="clearfix mb-4">
                                                             <div class="avatar avatar-lg pull-left" style="margin-right:8px;" >
                                                             <a href="<c:url context='${rootContext}' value='/user/${post.ownerUsername}/profile.htm'/>">
                                                                <img src="${avatarPath}/${post.ownerAvatar}" alt="${post.ownerFullname}">
@@ -65,14 +60,22 @@
                                                             <span class="box fa fa-clock-o">${post.time}</span>
                                                         </div>
                                                         </div>
-                                                        <p class="no-mb">
-                                                        <h1 class="strong text-dark title"> 
-                                                           ${post.title}
-                                                        </h1>
-                                                          ${post.description}
-                                                        </p>
-                                                        <p> <button class="btn btn-danger  btn-rounded" type="button">
-                                                             <i class="fa fa-download"></i> Dosyası İndir</button></p>
+                                                        <hr class="border-white border-0" />
+                                                        <div class="row no-mb">
+                                                           <div class="col-xs-6 col-sm-6 col-md-4 image text-center">
+                                                               <img src="<c:url context='${appAssets}' value='/img/file-icon.png'/>"/>
+                                                           </div>
+                                                           <div class="col-xs-12 col-sm-12 col-md-8">
+                                                               <h1 class="strong text-dark title">${post.title}</h1>
+                                                               <p>${post.description}</p>
+                                                               <div class="btn-block">
+                                                                   <a href="${lectureNotePath}/${post.ownerUsername}/${post.noteFileName}" download="${post.title}${lecnote_file_ext}" class="btn btn-primary">
+                                                                    <i class="fa fa-download"></i> Dosya İndir</a>
+                                                                  
+                                                               </div>
+                                                           </div>
+                                                        </div>
+                                                        
                                             </div>
                             </div>
                             <!-- /Panel body -->
@@ -211,22 +214,58 @@
                          <!-- /Panel footer -->
                   </div>                                                                
           <!--/ PANEL: Comments -->      
-       </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-             <!-- PANEL: Users -->
+       </div> 
+      <div class="col-xs-12 col-sm-12 col-md-4">
+                <!-- CardBox Inline: Desktop -->
+                <div class="card-box-inline bg-primary mb-0p5">
+                    <i class="icon fa fa-comments"></i>
+                    <span class="text">Yorumlar</span>
+                    <div class="value rate rate-up">92.9</div>
+                </div>
+                <!-- /CardBox Inline: Desktop -->
+
+                <!-- CardBox Inline: İndirimler -->
+                <div class="card-box-inline bg-primary mb-0p5">
+                    <i class="icon fa fa-download"></i>
+                    <span class="text">İndirimler</span>
+                    <div class="value rate rate-up">6.08</div>
+                </div>
+                <!-- /CardBox Inline: Mobile -->
+
+                <!-- CardBox Inline: Tablet -->
+                <div class="card-box-inline bg-primary mb-0p5">
+                    <i class="icon fa fa-eye"></i>
+                    <span class="text">Görüşler</span>
+                    <div class="value rate rate-down">0.98</div>
+                </div>
+                <!-- /CardBox Inline: Tablet -->
+                
+                <!-- CardBox Inline: Tablet -->
+                <div class="card-box-inline bg-primary mb-0p5">
+                    <i class="icon fa fa-thumbs-up"></i>
+                    <span class="text">Beğenler</span>
+                    <div class="value rate rate-down">0.95</div>
+                </div>
+               
+       <c:if test="${sharedNoteUsersList!=null}">
+           <c:if test="${!sharedNoteUsersList.isEmpty()}">  
+            <!-- PANEL: Users -->
                 <div class="panel panel-users">
 
                     <!-- Panel Heading -->
                     <div class="panel-heading">
 
                         <!-- Panel Title-->
-                        <div class="panel-title">Benzer Ders Notları</div>
+                        <div class="panel-title">
+                            Paylaşım Listesi (${sharedNoteUsersCount.count}) 
+                            
+                        </div>
                         <!-- /Panel Title-->
 
                         <!-- Panel Controls -->
                         <div class="panel-controls">
                             <ul class="panel-buttons">
-                                <li><i class="btn-panel-control icon fa fa-group"></i></li>
+                                <li><a href="#" class="btn-panel-control icon fa fa-group"></a></li>
                             </ul>
                         </div>
                         <!-- /Panel Controls -->
@@ -236,235 +275,149 @@
 
                     <!-- Panel Body -->
                     <div class="panel-body">
+                        <!-- Scrollable -->
+                          
                             <!-- TABLE: Users -->
                             <table class="table table-responsive users-table">
                                 <!-- ROW: User -->
-                                <tbody><tr class="user">
+                                <tbody>
+                                   <c:forEach var="user" items="${sharedNoteUsersList}" end="4">
+                                  <!-- ROW: User -->
+                                  <tr class="user">
                                     <td class="user-avatar">
                                         <!-- User Avatar -->
                                         <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs" class="mCS_img_loaded">
+                                        <a href="${user.username}/profile.htm"> 
+                                        <img src="${avatarPath}/${user.avatar}" alt="${user.name} ${user.surname}" class="mCS_img_loaded">
+                                        </a>
                                         </div>
                                         <!-- /User Avatar -->
                                     </td>
                                     <td>
                                         <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Benjamin Jacobs</a>
-                                        <div class="post">Director</div>
+                                        <a href="${user.username}/profile.htm" class="name">${user.name} ${user.surname}</a>
+                                        <div class="post">${user.username}</div>
                                         <!-- /User Info -->
                                     </td>
                                     <td>
                                         <!-- User Buttons -->
                                         <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
+                                            <li>
+                                                <button type="button" class="btn btn-sm  btn-rounded btn-danger" 
+                                                   data-toggle="modal" data-target="#delete-modal-shared-${user.userID}">
+                                                   Paylaşımdan Kaldır
+                                              </button>
+                                                                            
+                                            </li>
                                         </ul>
                                         <!-- /User Buttons -->
                                     </td>
                                 </tr>
+                                <!-- The Modal -->
+                                <div class="modal fade" id="delete-modal-shared-${user.userID}" role="dialog">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Paylaşımdan Kaldır
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                            </div>
+                                            <!-- Modal body -->
+                                           <div class="modal-body">
+                                                <form id="deleteUserFromListForm-${user.userID}" name="deleteUserFromListForm-${user.userID}" method="post">
+                                                    <p><a href="${user.username}/profile.htm" class="true">${user.name} ${user.surname}</a>, 
+                                                      <a class="title text-dark strong" 
+                                                        href="<c:url context='${rootContext}' value='/user/post.htm?postId=${post.postId}'/>">
+                                                       ${post.title}</a> ders notunun paylaşım listesinden kalıcı olarak kaldırmak ister misiniz ?
+                                                    </p>
+                                                   <input type="hidden"  id="deleteNote" name="deleteNote" value="${post.postId}"/>
+                                                  <input type="hidden"  id="deleteUser" name="deleteUser" value="${user.userID}"/>
+                                               </form>
+                                           </div>
+                                         <!-- Modal footer -->
+                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hayır</button>
+                                            <button type="button" class="btn btn-primary" 
+                                             onclick="document.getElementById('deleteUserFromListForm-${user.userID}').submit()">
+                                              Evet
+                                             </button>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+                                <!--// The Modal -->
                                 <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-deborah-young.jpg" alt="Deborah Young" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Deborah Young</a>
-                                        <div class="post">Animation Designer</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-louis-hawkins.jpg" alt="Louis Hawkins" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Louis Hawkins</a>
-                                        <div class="post">Marketing Director</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-ashley-warren.jpg" alt="Ashley Warren" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Ashley Warren</a>
-                                        <div class="post">Account Manager</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-christopher-tucker.jpg" alt="Christopher Tucker" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Christopher Tucker</a>
-                                        <div class="post">Director</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-lori-harrison.jpg" alt="Lori Harrison" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Lori Harrison</a>
-                                        <div class="post">Animation Designer</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-phillip-cole.jpg" alt="Phillip Cole" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Phillip Cole</a>
-                                        <div class="post">Marketing Director</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-
-                                <!-- ROW: User -->
-                                <tr class="user">
-                                    <td class="user-avatar">
-                                        <!-- User Avatar -->
-                                        <div class="avatar image">
-                                            <img src="/noteoverflow/assets/caspero/avatar-ann-james.jpg" alt="Ann James" class="mCS_img_loaded">
-                                        </div>
-                                        <!-- /User Avatar -->
-                                    </td>
-                                    <td>
-                                        <!-- User Info -->
-                                        <a href="http://vtdes.ru/demo/caspero/#" class="name">Ann James</a>
-                                        <div class="post">Account Manager</div>
-                                        <!-- /User Info -->
-                                    </td>
-                                    <td>
-                                        <!-- User Buttons -->
-                                        <ul class="inline-icons">
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a></li>
-                                            <li><a href="http://vtdes.ru/demo/caspero/#" class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a></li>
-                                        </ul>
-                                        <!-- /User Buttons -->
-                                    </td>
-                                </tr>
-                                <!-- /ROW: User -->
-                            </tbody></table>
+                                </c:forEach>
+                                </tbody>
+                            </table>
                             <!-- /TABLE: Users -->
+                         
+                        <!-- /Scrollable -->
+
                     </div>
                     <!-- /Panel Body -->
-                     <!-- Panel footer -->
+                  <!-- Panel footer -->
                         <div class="panel-footer ">
-                            <a href="<c:url context='${rootContext}' value='/user/friends.htm'/>"><i class="icon fa fa-arrow-circle-o-down"></i> Tüm Bağıntılarım Göster</a>
+                            <a href="<c:url context='${rootContext}' value='/user/shared_note_users_list.htm?nid=${post.postId}'/>"><i class="icon fa fa-arrow-circle-o-down"></i> Tümünü Göster</a>
                         </div>
-                            <!-- /Panel footer -->
+                      <!-- /Panel footer -->
                 </div>
-             <!-- /PANEL: Users -->
-        </div>                                                                
+            <!-- /PANEL: Users -->       
+          </c:if>
+       </c:if>
+       <c:if test="${relatedPosts!=null}">
+           <c:if test="${!relatedPosts.isEmpty()}">  
+             
+            <!-- PANEL: Users -->
+                <div class="panel panel-users">
+
+                    <!-- Panel Heading -->
+                    <div class="panel-heading">
+
+                        <!-- Panel Title-->
+                        <div class="panel-title">
+                           Benzer Notlar
+                        </div>
+                        <!-- /Panel Title-->
+
+                        <!-- Panel Controls -->
+                        <div class="panel-controls">
+                            <ul class="panel-buttons">
+                                <li><i class="btn-panel-control icon fa fa-file"></i></li>
+                            </ul>
+                        </div>
+                        <!-- /Panel Controls -->
+
+                    </div>
+                    <!-- /Panel Heading -->
+
+                    <!-- Panel Body -->
+                    <div class="panel-body">
+                        <!-- Scrollable -->
+                            <!-- TABLE: Related Posts -->
+                                <!-- ROW: User -->
+                                   <c:forEach var="post" items="${relatedPosts}">
+                                  <!-- ROW: Note -->
+                                   <div class="title strong">
+                                        <!-- Note title -->
+                                        <a href="<c:url context='${rootContext}' value='/user/post.htm?postId=${post.postId}'/>" class="name">
+                                            ${post.title}
+                                        </a>
+                                        <!-- /Note title -->
+                                    </div>
+                                
+                                <!-- /ROW: Note -->
+                                </c:forEach>
+                            <!-- /TABLE: Related Posts -->
+                        <!-- /Scrollable -->
+                    </div>
+                    <!-- /Panel Body -->
+                </div>
+         <!-- /PANEL: Users -->       
+        
+          </c:if>
+       </c:if>
+      </div>    
     </div>                                                 
 </c:set>
  
